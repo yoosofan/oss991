@@ -352,7 +352,7 @@ Effective Access Time (EAT)
 .. raw:: html
 
     <table border="1px" ><tr >
-    <td>ms</td><td>us</td><td>ns</td><td>action</td><tr >
+    <td>ms</td><td>μs</td><td>ns</td><td>action</td><tr >
     <td></td><td></td><td>0.5</td><td>CPU L1 dCACHE reference</td></tr><tr >
     <td></td><td></td><td>1</td><td>speed-of-light (a photon) travel a 1 ft (30.5cm) distance</td></tr><tr >
     <td></td><td></td><td>5</td><td>CPU L1 iCACHE Branch mispredict</td></tr><tr >
