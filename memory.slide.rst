@@ -256,6 +256,7 @@ Compaction
 
 .. image:: img/memory/suspend_state.png
    :align: center
+   :scale: 80%
 
 
 ----
@@ -265,6 +266,8 @@ overlay
 
 .. image:: img/memory/memory_ovelay_turbo_c.jpg
    :align: center
+   :width: 500px
+   :height: 700px
 
 ----
 
@@ -337,7 +340,7 @@ Effective Access Time (EAT)
     * EAT = 0.95 * 1 + (1 − 0.95) * (100 + 1)
     * EAT = 0.95 + 0.05 * 101
     * EAT = 0.95 + 5.05
-    * EAT = 5.1 ms
+    * EAT = 5.1 μs
 
 ----
 
