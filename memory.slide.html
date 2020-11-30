@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>memory.slide.rst</title>
+<meta content="fa" http-equiv="Content-Language" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<style type="text/css">
+
+/*
+*   math2html: convert LaTeX equations to HTML output.
+*
+*   Copyright (C) 2009,2010 Alex Fernández
+*
+*   Released under the terms of the `2-Clause BSD license'_, in short:
+*   Copying and distribution of this file, with or without modification,
+*   are permitted in any medium without royalty provided the copyright
+*   notice and this notice are preserved.
+*   This file is offered as-is, without any warranty.
+*
+* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause
+*
+*   Based on eLyXer: convert LyX source files to HTML output.
+*   http://elyxer.nongnu.org/
+*/
+/* --end--
+* CSS file for LaTeX formulas.
+*/
+
+/* Formulas */
+.formula {
+	text-align: center;
+	font-family: "Droid Serif", "DejaVu Serif", "STIX", serif;
+	margin: 1.2em 0;
+}
+span.formula {
+	white-space: nowrap;
+}
+div.formula {
+	padding: 0.5ex;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Basic features */
+a.eqnumber {
+	display: inline-block;
+	float: right;
+	clear: right;
+	font-weight: bold;
+}
+span.unknown {
+	color: #800000;
+}
+span.ignored, span.arraydef {
+	display: none;
+}
+.formula i {
+	letter-spacing: 0.1ex;
+}
+
+/* Alignment */
+.align-left, .align-l {
+	text-align: left;
+}
+.align-right, .align-r {
+	text-align: right;
+}
+.align-center, .align-c {
+	text-align: center;
+}
+
+/* Structures */
+span.overline, span.bar {
+	text-decoration: overline;
+}
+.fraction, .fullfraction {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+.fraction .fraction {
+	font-size: 80%;
+	line-height: 100%;
+}
+span.numerator {
+	display: block;
+}
+span.denominator {
+	display: block;
+	padding: 0ex;
+	border-top: thin solid;
+}
+sup.numerator, sup.unit {
+	font-size: 70%;
+	vertical-align: 80%;
+}
+sub.denominator, sub.unit {
+	font-size: 70%;
+	vertical-align: -20%;
+}
+span.sqrt {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0.1ex;
+}
+sup.root {
+	font-size: 70%;
+	position: relative;
+	left: 1.4ex;
+}
+span.radical {
+	display: inline-block;
+	padding: 0ex;
+	font-size: 150%;
+	vertical-align: top;
+}
+span.root {
+	display: inline-block;
+	border-top: thin solid;
+	padding: 0ex;
+	vertical-align: middle;
+}
+span.symbol {
+	line-height: 125%;
+	font-size: 125%;
+}
+span.bigsymbol {
+	line-height: 150%;
+	font-size: 150%;
+}
+span.largesymbol {
+	font-size: 175%;
+}
+span.hugesymbol {
+	font-size: 200%;
+}
+span.scripts {
+	display: inline-table;
+	vertical-align: middle;
+}
+.script {
+	display: table-row;
+	text-align: left;
+	line-height: 150%;
+}
+span.limits {
+	display: inline-table;
+	vertical-align: middle;
+}
+.limit {
+	display: table-row;
+	line-height: 99%;
+}
+sup.limit, sub.limit {
+	line-height: 100%;
+}
+span.symbolover {
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	float: right;
+	right: 100%;
+	bottom: 0.5em;
+	width: 0px;
+}
+span.withsymbol {
+	display: inline-block;
+}
+span.symbolunder {
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	float: right;
+	right: 80%;
+	top: 0.3em;
+	width: 0px;
+}
+
+/* Environments */
+span.array, span.bracketcases, span.binomial, span.environment {
+	display: inline-table;
+	text-align: center;
+	border-collapse: collapse;
+	margin: 0em;
+	vertical-align: middle;
+}
+span.arrayrow, span.binomrow {
+	display: table-row;
+	padding: 0ex;
+	border: 0ex;
+}
+span.arraycell, span.bracket, span.case, span.binomcell, span.environmentcell {
+	display: table-cell;
+	padding: 0ex 0.2ex;
+	line-height: 99%;
+	border: 0ex;
+}
+/*
+* CSS file for LaTeX formulas, extra stuff:
+* binomials, vertical braces, stackrel, fonts and colors.
+*/
+
+/* Inline binomials */
+span.binom {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 80%;
+}
+span.binomstack {
+	display: block;
+	padding: 0em;
+}
+
+/* Over- and underbraces */
+span.overbrace {
+	border-top: 2pt solid;
+}
+span.underbrace {
+	border-bottom: 2pt solid;
+}
+
+/* Stackrel */
+span.stackrel {
+	display: inline-block;
+	text-align: center;
+}
+span.upstackrel {
+	display: block;
+	padding: 0em;
+	font-size: 80%;
+	line-height: 64%;
+	position: relative;
+	top: 0.15em;
+
+}
+span.downstackrel {
+	display: block;
+	vertical-align: bottom;
+	padding: 0em;
+}
+
+/* Fonts */
+span.mathsf, span.textsf {
+	font-style: normal;
+	font-family: sans-serif;
+}
+span.mathrm, span.textrm {
+	font-style: normal;
+	font-family: serif;
+}
+span.text, span.textnormal {
+	font-style: normal;
+}
+span.textipa {
+	color: #008080;
+}
+span.fraktur {
+	font-family: "Lucida Blackletter", eufm10, blackletter;
+}
+span.blackboard {
+	font-family: Blackboard, msbm10, serif;
+}
+span.scriptfont {
+	font-family: "Monotype Corsiva", "Apple Chancery", "URW Chancery L", cursive;
+	font-style: italic;
+}
+
+/* Colors */
+span.colorbox {
+	display: inline-block;
+	padding: 5px;
+}
+span.fbox {
+	display: inline-block;
+	border: thin solid black;
+	padding: 2px;
+}
+span.boxed, span.framebox {
+	display: inline-block;
+	border: thin solid black;
+	padding: 5px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="document">
+
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr class="data-transition-duration field"><th class="docinfo-name" colspan="2">data-transition-duration:</th></tr>
+<tr class="data-transition-duration field"><td>&nbsp;</td><td class="field-body">1000</td>
+</tr>
+<tr class="skip-help field"><th class="docinfo-name">skip-help:</th><td class="field-body">true</td>
+</tr>
+<tr class="css field"><th class="docinfo-name">css:</th><td class="field-body">style.css</td>
+</tr>
+<tr class="substep field"><th class="docinfo-name">substep:</th><td class="field-body">true</td>
+</tr>
+</tbody>
+</table>
+<!-- title: Operating Systems - Memory  (By Ahmad Yoosofan) -->
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">slide-numbers:</th><td class="field-body">true</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="operating-systems">
+<h1>Operating Systems</h1>
+<div class="section" id="memory-management">
+<h2>Memory Management</h2>
+<p>Ahmad Yoosofan</p>
+<p>University of Kashan</p>
+<p>Spring 2020</p>
+<hr class="docutils" />
+<p>بخش‌های درونی یک فرآیند در حالت کلی</p>
+<img alt="img/memory/memory_precess_addressing_parts.png" class="align-center" src="img/memory/memory_precess_addressing_parts.png" />
+<hr class="docutils" />
+<p>مشخص شدن آدرس‌های حافظهٔ فرآیند</p>
+<img alt="img/memory/memory_program_address_binding.png" class="align-center" src="img/memory/memory_program_address_binding.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_linking_loading_scenario.png" class="align-center" src="img/memory/memory_linking_loading_scenario.png" style="width: 715.5px; height: 431.1px;" />
+<hr class="docutils" />
+<p>address binding, loader</p>
+<img alt="img/memory/memory_address_binding_loader.png" class="align-center" src="img/memory/memory_address_binding_loader.png" style="width: 748.8000000000001px; height: 226.8px;" />
+<hr class="docutils" />
+<p>address binding, linker</p>
+<img alt="img/memory/memory_address_binding_linker.png" class="align-center" src="img/memory/memory_address_binding_linker.png" style="width: 748.8000000000001px; height: 325.8px;" />
+<hr class="docutils" />
+<p>address binding, absolute and relocate loader</p>
+<img alt="img/memory/memory_absolute_relocate_loader.png" class="align-center" src="img/memory/memory_absolute_relocate_loader.png" style="width: 737.1px; height: 367.2px;" />
+<hr class="docutils" />
+<p>چگونگی کارکرد پیوند زدن تابع‌ها از پرونده‌های گوناگون</p>
+<img alt="img/memory/memory_linking_function.png" class="align-center" src="img/memory/memory_linking_function.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h1>تخصیص حافظهٔ پیوسته به فرآیندها</h1>
+<p>به فرآیندها حافظهٔ پیوسته‌ای داده شود.</p>
+<hr class="docutils" />
+<p>بخش‌بندی ثابت حافظه</p>
+<img alt="img/memory/memory_fixed_partitioning.png" class="align-center" src="img/memory/memory_fixed_partitioning.png" />
+<hr class="docutils" />
+<p>تخصیص حافظه به فرآیندها در حالت بخش‌بندی ثابت حافظه</p>
+<img alt="img/memory/memory_fixed_allocation.png" class="align-center" src="img/memory/memory_fixed_allocation.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id2">
+<h1>مشکلات بخش‌بندی ثابت</h1>
+<ol class="substep arabic simple">
+<li>انعطاف بسیار پایین</li>
+<li>محدودیت زیاد برای اندازهٔ فرایند در حالی که فضای حافظه خالی است.</li>
+<li>تکه تکه شدن یا پراکندی داخلی internal fragmentation</li>
+<li><dl class="first docutils">
+<dt>هدر رفت حافظه</dt>
+<dd><ul class="first last">
+<li>بخشی از حافظه که به فرایند داده شده است فقط برای آن فرایند است.</li>
+<li>یعنی اگر بخشی از آن را فرایند به کار نبرد هدر رفته است.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="id3">
+<h1>تکه تکه شدن (پراکندگی) داخلی حافظه</h1>
+<p>Internal Memory Fragmentation</p>
+<hr class="docutils" />
+<p>به کارگیری حافظهٔ نسبی برای نگهداری مکان چندین فرآیند در حافظه</p>
+<img alt="img/memory/base_limit_register.png" class="align-center" src="img/memory/base_limit_register.png" />
+<hr class="docutils" />
+<p>حفاظت از حافظه به کمک ثبات‌های پایه و حد</p>
+<img alt="img/memory/hardware_address_protection.png" class="align-center" src="img/memory/hardware_address_protection.png" />
+<hr class="docutils" />
+<p>بخش‌بندی پویای حافظه</p>
+<img alt="img/memory/memory_management_pc.png" class="align-center" src="img/memory/memory_management_pc.png" />
+<hr class="docutils" />
+<p>ارتباط میان آدرس فیزیکی و آدرس منطقی در آدرس دهی نسبی به کمکِ واحد مدیریت حافظه (MMU)</p>
+<img alt="img/memory/relocation_register_mmu.png" class="align-center" src="img/memory/relocation_register_mmu.png" />
+<hr class="docutils" />
+<p>حافظهٔ فرآیندها در سیستم عامل CTSS</p>
+<img alt="img/memory/memory_of_CTSS.png" class="align-center" src="img/memory/memory_of_CTSS.png" />
+<hr class="docutils" />
+<p>اثر به کارگیری حافظهٔ پویا</p>
+<img alt="img/memory/memory_effect_of_dynamic_partitioning.png" class="align-center" src="img/memory/memory_effect_of_dynamic_partitioning.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id4">
+<h1>برگزیدن فضای آزاد برای فرآیند تازه وارد</h1>
+<ul class="substep simple">
+<li>اولین برازش(First Fit)</li>
+<li>بهترین برازش(Best Fit)</li>
+<li>بدترین برازش(Worst Fit)</li>
+<li>درپی برازش (برازش بعدی Next Fit)</li>
+</ul>
+<hr class="docutils" />
+<img alt="img/memory/memory_select_part_for_allocation.png" class="align-center" src="img/memory/memory_select_part_for_allocation.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id5">
+<h1>تکه تکه شدن (پراکندگی یا پارگی) خارجی</h1>
+<p>External Fragmentation</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="compaction">
+<h1>Compaction</h1>
+<object class="align-center" data="img/memory/compaction.svg" type="image/svg+xml">
+img/memory/compaction.svg</object>
+<!-- ::
+
+https://web.fe.up.pt/~arestivo/presentation/os-memory/#15
+
+Memory-Compaction-in-contiguous-memory-allocation-1.jpg
+https://binaryterms.com/contiguous-memory-allocation-in-operating-system.html
+
+compaction.png
+https://github.com/mor1/ia-operating-systems/wiki/06-Virtual-Addressing
+https://github.com/mor1/ia-operating-systems
+
+https://www.faceprep.in/operating-systems/operating-systems-fragmentation-and-compaction/
+
+https://slideplayer.com/slide/7084682/ -->
+<hr class="docutils" />
+<p>حافظهٔ پویای رفاقتی Buddy system</p>
+<img alt="img/memory/memory_buddy_system1.png" class="align-center" src="img/memory/memory_buddy_system1.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_buddy_system2.png" class="align-center" src="img/memory/memory_buddy_system2.png" style="width: 742.5px; height: 432.0px;" />
+<hr class="docutils" />
+<p>الگوریتم اجرا</p>
+<img alt="img/memory/memory_buddy_system3.png" class="align-center" src="img/memory/memory_buddy_system3.png" />
+<hr class="docutils" />
+<p>جابجا کردن فرآیند میان حافظهٔ‌اصلی و حافظهٔ جانبی (دیسک)، شکل ساده‌ای از حافظهٔ مجازی</p>
+<img alt="img/memory/swapping_processes.png" class="align-center" src="img/memory/swapping_processes.png" />
+<hr class="docutils" />
+<img alt="img/memory/suspend_state.png" class="align-center" src="img/memory/suspend_state.png" />
+<hr class="docutils" />
+<p>overlay</p>
+<img alt="img/memory/memory_ovelay_turbo_c.jpg" class="align-center" src="img/memory/memory_ovelay_turbo_c.jpg" />
+<hr class="docutils" />
+<p>سلسله مراتب حافظه</p>
+<img alt="img/memory/memory_hierarchy_1_4_StorageDeviceHierarchy.jpg" class="align-center" src="img/memory/memory_hierarchy_1_4_StorageDeviceHierarchy.jpg" />
+<p><a class="reference external" href="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter1/1_4_StorageDeviceHierarchy.jpg">cs.uic.edu</a></p>
+<hr class="docutils" />
+<p>سلسله مراتب حافظه جزئی‌تر</p>
+<img alt="img/memory/memory_hierarchy_hei.png" class="align-center" src="img/memory/memory_hierarchy_hei.png" />
+<p><a class="reference external" href="href=&quot;http://images.bit-tech.net/content_images/2007/11/the_secrets_of_pc_memory_part_1/hei.png">bit-tech.net</a></p>
+<hr class="docutils" />
+<p>حافظهٔ نهان</p>
+<object class="align-center" data="img/memory/memory_cache_Cache_hierarchy-example.svg" type="image/svg+xml">
+img/memory/memory_cache_Cache_hierarchy-example.svg</object>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/File:Cache,hierarchy-example.svg">wikipedia.org Cache,hierarchy</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/CPU_cache">wikipedia.org CPU_cache</a></p>
+<hr class="docutils" />
+<p>حافظهٔ نهان دو سطحی در یک پردازندهٔ واقعی</p>
+<img alt="img/memory/memory_cache_image025.jpg" class="align-center" src="img/memory/memory_cache_image025.jpg" />
+<p><a class="reference external" href="https://www.byclb.com/TR/Tutorials/dsp_advanced/ch1_1_dosyalar/image025.jpg">link</a></p>
+<hr class="docutils" />
+<p>الگوریتم خواندن و نوشتن از حافظهٔ نهان</p>
+<object class="align-center" data="img/memory/memory_cache_read_write_algorithm_Write-back_with_write-allocation.svg" type="image/svg+xml">
+img/memory/memory_cache_read_write_algorithm_Write-back_with_write-allocation.svg</object>
+<p><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg">link1</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Cache_(computing)">link2</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="effective-access-time-eat">
+<h1>Effective Access Time (EAT)</h1>
+<ul class="substep simple">
+<li>t<sub>m</sub> : زمان دسترسی به حافظه‌ی اصلی</li>
+<li>t<sub>c</sub> : زمان دسترستی به حافظه‌ی نهان</li>
+<li>h<sub>c</sub> : ضریب اصابت به حافظه‌ی نهان</li>
+</ul>
+<div class="substep formula">
+<i>EAT</i> = <i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>c</i></sub> + (1 − <i>h</i><sub><i>c</i></sub>)*(<i>t</i><sub><i>m</i></sub> + <i>t</i><sub><i>c</i></sub>)
+</div>
+<hr class="docutils" />
+<p>اگر ضریب اصابت (یا نسبت اصابت) برای 0.95 باشد و سرعت دسترسی به حافظهٔ اصلی 100 میکرو ثانیه باشد و سرعت دسترسی حافظهٔ نهان ۱ میکرو ثانیه باشد در این صورت زمان دسترسی مؤثر برابر خواهد بود با</p>
+<ul class="substep simple">
+<li>EAT = 0.95 * 1 + (1 − 0.95) * (100 + 1)</li>
+<li>EAT = 0.95 + 0.05 * 101</li>
+<li>EAT = 0.95 + 5.05</li>
+<li>EAT = 5.1 ms</li>
+</ul>
+<hr class="docutils" />
+<img alt="img/memory/memory_effect_of_cache.png" class="align-center" src="img/memory/memory_effect_of_cache.png" />
+<hr class="docutils" />
+<table border="1px" ><tr >
+<td>ms</td><td>us</td><td>ns</td><td>action</td><tr >
+<td></td><td></td><td>0.5</td><td>CPU L1 dCACHE reference</td></tr><tr >
+<td></td><td></td><td>1</td><td>speed-of-light (a photon) travel a 1 ft (30.5cm) distance</td></tr><tr >
+<td></td><td></td><td>5</td><td>CPU L1 iCACHE Branch mispredict</td></tr><tr >
+<td></td><td></td><td>7</td><td>CPU L2  CACHE reference</td></tr><tr >
+<td></td><td></td><td>71</td><td>CPU cross-QPI/NUMA best  case on XEON E5-46</td><tr >
+<td></td><td></td><td>100</td><td>MUTEX lock/unlock</td><tr >
+<td></td><td></td><td>100</td><td>own DDR MEMORY reference</td><tr >
+<td></td><td>20</td><td>000</td><td>Send 2K bytes over 1 Gbps NETWORK</td><tr >
+<td></td><td>250</td><td>000</td><td>Read 1 MB sequentially from MEMORY</td><tr >
+<td>10</td><td>000</td><td>000</td><td>DISK seek</td><tr >
+<td>10</td><td>000</td><td>000</td><td>Read 1 MB sequentially from NETWORK</td><tr >
+<td>30</td><td>000</td><td>000</td><td>Read 1 MB sequentially from DISK</td><tr >
+<td>150</td><td>000</td><td>000</td><td>Send a NETWORK packet CA -> Netherlands</td><tr >
+</tr></table>
+<a href="https://stackoverflow.com/questions/4087280/approximate-cost-to-access-various-caches-and-main-memory#4087315">[link]</a></div>
+<hr class="docutils" />
+<div class="section" id="id6">
+<h1>حافظهٔ صفحه‌بندی شده</h1>
+<p>Paging</p>
+<hr class="docutils" />
+<p>شکل سادهٔ صفحه‌بندی</p>
+<img alt="img/memory/paging_model.png" class="align-center" src="img/memory/paging_model.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_model_address.png" class="align-center" src="img/memory/memory_paging_model_address.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_from_disk.png" class="align-center" src="img/memory/memory_paging_from_disk.png" style="width: 682.5px; height: 595.0px;" />
+<hr class="docutils" />
+<p>سخت‌افزار صفحه‌بندی</p>
+<img alt="img/memory/paging_hardware.png" class="align-center" src="img/memory/paging_hardware.png" />
+<hr class="docutils" />
+<p>بخش‌بندی ثبات آدرس در حافظهٔ صفحه‌بندی شده</p>
+<img alt="img/memory/page_number_offset.png" class="align-center" src="img/memory/page_number_offset.png" />
+<hr class="docutils" />
+<p>یک کامپیوتر با ۳۲ بایت حافظه و صفحه‌های چهار بایتی</p>
+<ol class="substep arabic simple">
+<li>Draw Memory Frames</li>
+<li>some First Frames for os</li>
+<li>Put a process into Memory (not continuous or in order)</li>
+<li>Fill page table</li>
+<li>Convert a Logical Addfress to Physical Address</li>
+<li>Put another process into Memory</li>
+</ol>
+<hr class="docutils" />
+<p>یک کامپیوتر با حافظهٔ ۱۲۸ بایتی و صفحه‌های ۸ بایتی</p>
+<img alt="img/memory/memory_paging_typical_page_table_entry.jpg" class="align-center" src="img/memory/memory_paging_typical_page_table_entry.jpg" />
+<hr class="docutils" />
+<p>یک حافظهٔ ۳۲ بایتی با صفحه‌های ۴ بایتی</p>
+<img alt="img/memory/paging_example_32_bytes_memory.png" class="align-center" src="img/memory/paging_example_32_bytes_memory.png" />
+<hr class="docutils" />
+<p>تغییرات فضاهای آزاد پیش و پس از تخصیص حافظه به یک فرآیند</p>
+<img alt="img/memory/paging_free_frames_before_after.png" class="align-center" src="img/memory/paging_free_frames_before_after.png" />
+<hr class="docutils" />
+<p>تغییرات حافظه برای چند فرآیند</p>
+<img alt="img/memory/memory_paging_process.png" class="align-center" src="img/memory/memory_paging_process.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_process_page_tables.png" class="align-center" src="img/memory/memory_paging_process_page_tables.png" />
+<hr class="docutils" />
+<p>تبدیل آدرس منطقی به آدرس فیزیکی در حافظهٔ صفحه‌بندی شده</p>
+<img alt="img/memory/memory_paging_logical_address_to_physical_address.png" class="align-center" src="img/memory/memory_paging_logical_address_to_physical_address.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_logical_address_to_physical_address_detail.png" class="align-center" src="img/memory/memory_paging_logical_address_to_physical_address_detail.png" />
+<hr class="docutils" />
+<p>Address Translation</p>
+<img alt="img/memory/memory_paging_address_translation.png" class="align-center" src="img/memory/memory_paging_address_translation.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id7">
+<h1>اندازهٔ صفحه</h1>
+<p>کوچک یا بزرگ بودن اندازهٔ صفحه‌ها (همان قاب‌های حافظه) بر روی موضوع‌های گوناگونی اثر دارد.</p>
+<hr class="docutils" />
+<p>حفاظت از حافظهٔ صفحه‌بندی شده</p>
+<img alt="img/memory/paging_valid_invalid.png" class="align-center" src="img/memory/paging_valid_invalid.png" />
+<hr class="docutils" />
+<p>اشتراک گذاری در حافظهٔ صفحه‌بندی شده</p>
+<img alt="img/memory/memory_paging_share_pages.png" class="align-center" src="img/memory/memory_paging_share_pages.png" />
+<hr class="docutils" />
+<img alt="img/memory/paging_sharing_code.png" class="align-center" src="img/memory/paging_sharing_code.png" />
+<hr class="docutils" />
+<p>سلسه مراتب حافظه</p>
+<img alt="img/memory/memory_hierarchy.png" class="align-center" src="img/memory/memory_hierarchy.png" />
+<hr class="docutils" />
+<p>Memory Access</p>
+<img alt="img/memory/memory_effect_of_cache.png" class="align-center" src="img/memory/memory_effect_of_cache.png" />
+<hr class="docutils" />
+<p>Paging Memory Access</p>
+<img alt="img/memory/memory_paging_page_table_and_cache.jpg" class="align-center" src="img/memory/memory_paging_page_table_and_cache.jpg" />
+<hr class="docutils" />
+<p>TLB</p>
+<img alt="img/memory/paging_hardware_with_TLB.png" class="align-center" src="img/memory/paging_hardware_with_TLB.png" style="width: 420.0px; height: 309.4px;" />
+<hr class="docutils" />
+<div class="section" id="effective-access-time">
+<h2>Effective Access Time</h2>
+<ul class="substep simple">
+<li>t<sub>t</sub> : زمان دسترسی به حافظه‌ی نهان جدول صفحه</li>
+<li>t<sub>c</sub> : زمان دسترستی به حافظه‌ی نهان</li>
+<li>t<sub>m</sub> : زمان دسترسی به حافظه‌ی اصلی</li>
+<li>h<sub>t</sub> : ضریب اصابت به حافظه‌ی نهان جدول صفحه</li>
+<li>h<sub>c</sub> : ضریب اصابت به حافظه‌ی نهان</li>
+</ul>
+<div class="substep formula">
+<i>EAT</i> = <i>table</i> + <i>memory</i>
+</div>
+<div class="substep formula">
+<i>table</i> = <i>h</i><sub><i>t</i></sub>*<i>t</i><sub><i>t</i></sub> + (1 − <i>h</i><sub><i>t</i></sub>)*(<i>t</i><sub><i>t</i></sub> + <i>t</i><sub><i>m</i></sub>)
+</div>
+<div class="substep formula">
+<i>memory</i> = <i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>c</i></sub> + (1 − <i>h</i><sub><i>c</i></sub>)*(<i>t</i><sub><i>m</i></sub> + <i>t</i><sub><i>c</i></sub>)
+</div>
+<p class="substep">با فرض برابر بودن نسبت‌های اصابت و زمان‌های یکسان برای دسترسی به حافظهٔ نهان  و حافظهٔ TLB خواهیم داشت</p>
+<div class="ltr substep formula">
+<i>EAT</i> = 2*(<i>h</i>*<i>t</i><sub><i>c</i></sub> + (1 − <i>h</i>)*(<i>t</i><sub><i>c</i></sub> + <i>t</i><sub><i>m</i></sub>))
+</div>
+<hr class="docutils" />
+<p>زمان دسترسی مؤثر = <cite>زمان دسترسی به جدول صفحه + زمان دسترسی به حافظه</cite></p>
+<div class="substep formula">
+<i>EAT</i> = 2*(<i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>c</i></sub> + (1 − <i>h</i><sub><i>c</i></sub>)*(<i>t</i><sub><i>m</i></sub> + <i>t</i><sub><i>c</i></sub>))
+</div>
+<div class="substep formula">
+<i>EAT</i> = 2*(<i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>c</i></sub> + <i>t</i><sub><i>m</i></sub> + <i>t</i><sub><i>c</i></sub> − <i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>m</i></sub> − <i>h</i><sub><i>c</i></sub>*<i>t</i><sub><i>c</i></sub>)
+</div>
+<div class="substep formula">
+<i>EAT</i> = 2*(<i>t</i><sub><i>c</i></sub> + (1 − <i>h</i><sub><i>c</i></sub>)*<i>t</i><sub><i>m</i></sub>)
+</div>
+<p class="substep">Reduce speed</p>
+<hr class="docutils" />
+<ul class="substep simple">
+<li>Max memory supported : 64 byte = 2 ^ 6</li>
+<li>frame size = page table 2 byte</li>
+<li>2 ^ 6 / 2 ^1 = 2 ^ 5 = 32</li>
+<li>?</li>
+</ul>
+<hr class="docutils" />
+<ul class="substep simple">
+<li>Max memory supported : 64 byte = 2 ^ 6</li>
+<li>frame size = page table 4 byte</li>
+<li>2^6 / 2^2 = 2^4 = 16</li>
+<li>?</li>
+</ul>
+<hr class="docutils" />
+<ul class="substep simple">
+<li>Max memory supported : 64 byte = 2 ^ 6</li>
+<li>frame size = page table 8 byte</li>
+<li>2^6 / 2^3 = 2^3 = 8</li>
+<li>?</li>
+</ul>
+<hr class="docutils" />
+<ul class="substep simple">
+<li>32 bit address</li>
+<li>1024 size of frame?</li>
+<li>32 - 10 = 22</li>
+<li>2^22 Frame</li>
+<li>2^22 page table entry</li>
+<li>Problem</li>
+</ul>
+<hr class="docutils" />
+<ul class="substep simple">
+<li>32 bit address</li>
+<li>2^20 size of frame?</li>
+<li>32 - 20 = 12</li>
+<li>2^12 Frame</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id8">
+<h1>صفحه‌بندی دو سطحی</h1>
+<img alt="img/memory/paging_two_level.png" class="align-center" src="img/memory/paging_two_level.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id9">
+<h1>آدرس‌دهی در صفحه‌بندی دو سطحی</h1>
+<img alt="img/memory/paging_address_translation_32bit.png" class="align-center" src="img/memory/paging_address_translation_32bit.png" />
+<hr class="docutils" />
+<img alt="img/memory/paging_two_level_32bit_address.png" class="align-center" src="img/memory/paging_two_level_32bit_address.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_Address_Translation_in_a_Two_Level_Paging_System.png" class="align-center" src="img/memory/memory_paging_Address_Translation_in_a_Two_Level_Paging_System.png" style="width: 742.5px; height: 461.7px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_paging_Two_Level_Hierarchical_Page_Table.png" class="align-center" src="img/memory/memory_paging_Two_Level_Hierarchical_Page_Table.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id10">
+<h1>صفحه‌بندی دو سطحی ۶۴ بیتی</h1>
+<img alt="img/memory/paging_two_level_64bit.png" class="align-center" src="img/memory/paging_two_level_64bit.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id11">
+<h1>صفحه‌بندی سه سطحی ۶۴ بیتی</h1>
+<img alt="img/memory/paging_three_level_64bit_address.png" class="align-center" src="img/memory/paging_three_level_64bit_address.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id12">
+<h1>صفحه‌بندی با جدول صفحهٔ معکوس</h1>
+<img alt="img/memory/memory_paging_Inverted_Page_Table_Structure.png" class="align-center" src="img/memory/memory_paging_Inverted_Page_Table_Structure.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id13">
+<h1>حافظهٔ مجازی</h1>
+<img alt="img/memory/memory_virtual_memory_general.png" class="align-center" src="img/memory/memory_virtual_memory_general.png" />
+<hr class="docutils" />
+<img alt="img/memory/virtual_memory_concept.png" class="align-center" src="img/memory/virtual_memory_concept.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id14">
+<h1>آدرس‌دهی حافظهٔ مجازی</h1>
+<img alt="img/memory/virtual_memory_addressing.png" class="align-center" src="img/memory/virtual_memory_addressing.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_with_TLB.png" class="align-center" src="img/memory/memory_virtual_with_TLB.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_valid_invalid.png" class="align-center" src="img/memory/memory_virtual_valid_invalid.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_handling_page_fault.png" class="align-center" src="img/memory/memory_virtual_handling_page_fault.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_Operation_of_Paging_and_Translation_Lookaside_Buffer.png" class="align-center" src="img/memory/memory_virtual_Operation_of_Paging_and_Translation_Lookaside_Buffer.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="effective-access-time-of-virtual-memory">
+<h1>Effective Access Time of Virtual Memory</h1>
+<ul class="substep simple">
+<li>effective access time = (1 − p) × ma + p × page fault time.</li>
+<li>effective access time = (1 − p) × (200) + p (8 milliseconds) = (1 − p) × 200 + p × 8,000,000 = 200 + 7,999,800 × p</li>
+<li>220 &gt; 200 + 7,999,800 × p,</li>
+<li>20 &gt; 7,999,800 × p,</li>
+<li>p &lt; 0.0000025</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="allocation-of-frames">
+<h1>تخصیص قاب‌ها Allocation of frames</h1>
+<ul class="substep simple">
+<li>درخواستی On demand</li>
+<li>پیش صفحه‌بندی prepaging</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id15">
+<h1>روش‌های تخصیص تعداد قاب به هر فرآیند</h1>
+<ul class="substep">
+<li><p class="first">مجموعهٔ مقیم برای هر فرآیند.</p>
+<blockquote>
+<ul class="simple">
+<li>تعداد ثابت fixed-allocation</li>
+<li>تعداد متغیر  variable-allocation</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">بخش کردن قاب‌ها میان فرآیندها</p>
+<blockquote>
+<ul class="simple">
+<li>تعداد برابر</li>
+<li>تعداد به نسبت اندازهٔ فرآیند</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">چگونگی برگزیدن یک قاب برای تخصیص به یک فرآیند</p>
+<blockquote>
+<ul class="simple">
+<li>تخصیص محلی</li>
+<li>تخصیص سراسری</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id16">
+<h1>سیاست‌های پاک کردن</h1>
+<ul class="substep simple">
+<li>پاک کردن درخواستی demand cleaning</li>
+<li>پیش پاک کردن precleaning</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id17">
+<h1>کپی کردن هنگام نوشتن</h1>
+<img alt="img/memory/memory_virtual_copy_on_write_before.png" class="align-center" src="img/memory/memory_virtual_copy_on_write_before.png" style="width: 640.5px; height: 266.7px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_copy_on_write_after.png" class="align-center" src="img/memory/memory_virtual_copy_on_write_after.png" style="width: 648.9px; height: 312.9px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id18">
+<h1>جایگزینی صفحه</h1>
+<img alt="img/memory/memory_virtual_need4replacement.png" class="align-center" src="img/memory/memory_virtual_need4replacement.png" style="width: 713.6px; height: 528.0px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_page_replacement.png" class="align-center" src="img/memory/memory_virtual_page_replacement.png" style="width: 705.6px; height: 529.6px;" />
+<hr class="docutils" />
+<ul class="simple">
+<li>frame-allocation algorithm and a page-replacement algorithm.</li>
+<li>reference string.</li>
+<li>0100, 0432, 0101, 0612, 0102, 0103, 0104, 0101, 0611, 0102, 0103, 0104, 0101, 0610, 0102, 0103, 0104, 0101, 0609, 0102, 0105</li>
+<li>At 100 bytes per page, this sequence is reduced to the following reference</li>
+<li>string:</li>
+<li>1, 4, 1, 6, 1, 6, 1, 6, 1, 6, 1</li>
+<li>تعداد خطای صفحه بسته به تعداد قاب‌های تخصیص داده شده</li>
+</ul>
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_page_fault_per_frame_allocated.png" class="align-center" src="img/memory/memory_virtual_page_fault_per_frame_allocated.png" style="width: 726.4000000000001px; height: 437.6px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="fifo">
+<h1>الگوریتم جایگزینی FIFO</h1>
+<img alt="img/memory/memory_virtual_page_replacement_FIFO.png" class="align-center" src="img/memory/memory_virtual_page_replacement_FIFO.png" style="width: 725.9px; height: 192.5px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="beladys-anomaly">
+<h1>Belady’s anomaly</h1>
+<img alt="img/memory/memory_virtual_page_replacement_FIFO_Blady_anomaly.png" class="align-center" src="img/memory/memory_virtual_page_replacement_FIFO_Blady_anomaly.png" style="width: 752.4px; height: 477.0px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="optimal">
+<h1>الگوریتم جایگزینی بهینه (Optimal)</h1>
+<img alt="img/memory/memory_virtual_page_replacement_Optimal.png" class="align-center" src="img/memory/memory_virtual_page_replacement_Optimal.png" style="width: 718.9px; height: 218.39999999999998px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="lru">
+<h1>الگوریتم جایگزینی LRU</h1>
+<img alt="img/memory/memory_virtual_page_replacement_LRU.png" class="align-center" src="img/memory/memory_virtual_page_replacement_LRU.png" style="width: 713.3px; height: 196.0px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="how-to-impolement-lru">
+<h1>How to Impolement LRU</h1>
+<ul class="substep simple">
+<li>counters</li>
+<li>stacks</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="use-of-a-stack-to-record-the-most-recent-page-references">
+<h1>Use of a stack to record the most recent page references.</h1>
+<img alt="img/memory/memory_virtual_page_replacement_LRU_stack.png" class="align-center" src="img/memory/memory_virtual_page_replacement_LRU_stack.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="lfu">
+<h1>الگوریتم جایگزینی کمترین فراوانی LFU</h1>
+<p>Least Frequently Used</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="mfu">
+<h1>الگوریتم جایگزینی بیشترین فراوانی MFU</h1>
+<p>page-replacement algorithm is based on the argument that the page with the smallest count was probably just brought in and has yet to be used</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="not-recently-used-page-replacement-algorithm">
+<h1>Not Recently Used Page Replacement Algorithm</h1>
+<p>NRU</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="second-chance-clock">
+<h1>الگوریتم جایگزینی بخت دوم (second chance) یا ساعت (clock)</h1>
+<p>بیت دسترسی access bit یا بیت ارجاع reference bit یا بیت استفاده use bit</p>
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_page_replacement_second_chance.png" class="align-center" src="img/memory/memory_virtual_page_replacement_second_chance.png" style="width: 730.4000000000001px; height: 636.8000000000001px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id19">
+<h1>الگوریتم جایگزینی ساعت بهبود یافته</h1>
+<p>بیت تغییر modify bit یا بیت کثیف dirty bit</p>
+<p>(بیت دسترسی ، بیت تغییر)</p>
+<ul class="substep simple">
+<li><dl class="first docutils">
+<dt>Form 1</dt>
+<dd><ol class="first last arabic">
+<li>Search for (0, 0)</li>
+<li>Search for (1, 0) and access bit = 0</li>
+<li>goto 1</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="substep simple">
+<li><dl class="first docutils">
+<dt>Form 2</dt>
+<dd><ol class="first last arabic">
+<li>Search for (0, 0)</li>
+<li>Search for (1, 0) and access bit = 0</li>
+<li>Search for (0, 0)</li>
+<li>Search for (1, 0)</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id20">
+<h1>الگوریتم میانگیر صفحه</h1>
+<p>PAGE BUFFERING</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="thrashing">
+<h1>کوبیدگی (Thrashing)</h1>
+<img alt="img/memory/memory_virtual_thrashing.png" class="align-center" src="img/memory/memory_virtual_thrashing.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id21">
+<h1>اصل محلی بودن</h1>
+<img alt="img/memory/memory_virtual_locality_principle.png" class="align-center" src="img/memory/memory_virtual_locality_principle.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id22">
+<h1>روش شناسایی کوبیدگی به کمک مدل مجموعهٔ کاری</h1>
+<img alt="img/memory/memory_virtual_thrashing_working_set_model.png" class="align-center" src="img/memory/memory_virtual_thrashing_working_set_model.png" style="width: 738.4000000000001px; height: 172.0px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_thrashing_working_set_model_example.png" class="align-center" src="img/memory/memory_virtual_thrashing_working_set_model_example.png" style="width: 745.1999999999999px; height: 508.2px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_virtual_thrashing_working_set_model_graph.png" class="align-center" src="img/memory/memory_virtual_thrashing_working_set_model_graph.png" style="width: 765.0999999999999px; height: 520.8px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id23">
+<h1>روش شناسایی کوبیدگی به کمک فراوانی خطای نبود صفحه</h1>
+<p>page-fault frequency ( PFF )</p>
+<img alt="img/memory/memory_virtual_thrashing_page_fault_frequency.png" class="align-center" src="img/memory/memory_virtual_thrashing_page_fault_frequency.png" style="width: 574.8px; height: 294.59999999999997px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id24">
+<h1>روش‌های رویارویی با کوبیدگی پس از شناسایی آن</h1>
+<p class="substep">معلق کردن تعدادی فرآیند برگزیده شده</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="memory-mapped-files">
+<h1>پرونده‌های نگاشت شده به حافظه (Memory-Mapped Files)</h1>
+<img alt="img/memory/memory_virtual_memory_mapped_files.png" class="align-center" src="img/memory/memory_virtual_memory_mapped_files.png" style="width: 535.8px; height: 426.59999999999997px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id25">
+<h1>ورودی و خروجی‌های نگاشت شده به حافظه</h1>
+<p>(I/O-Mapped Files)</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id26">
+<h1>قفل کردن برخی صفحه‌ها</h1>
+<p>Lock pages</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id27">
+<h1>اثر نوع برنامه‌نویسی و کامپایلر بر حافظهٔ مجازی</h1>
+<pre class="code cpp ltr literal-block">
+<span class="ln">1 </span><span class="keyword type">void</span> <span class="name function">work_with_array_row_by_row</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+<span class="ln">2 </span>  <span class="keyword type">double</span> <span class="name">xa</span><span class="punctuation">[</span><span class="literal number integer">1000</span><span class="punctuation">][</span><span class="literal number integer">1000</span><span class="punctuation">];</span>
+<span class="ln">3 </span>  <span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">,</span><span class="name">j</span><span class="punctuation">;</span>
+<span class="ln">4 </span>  <span class="keyword">for</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">&lt;</span><span class="literal number integer">1000</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span>
+<span class="ln">5 </span>    <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">&lt;</span><span class="literal number integer">1000</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">++</span><span class="punctuation">)</span>
+<span class="ln">6 </span>      <span class="name">xa</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">][</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">i</span><span class="operator">*</span><span class="literal number integer">1000</span><span class="operator">+</span><span class="name">j</span><span class="punctuation">;</span>
+<span class="ln">7 </span><span class="punctuation">}</span>
+</pre>
+<hr class="docutils" />
+<pre class="code cpp ltr literal-block">
+<span class="ln">1 </span><span class="keyword type">void</span> <span class="name function">work_with_array_column_by_column</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+<span class="ln">2 </span>  <span class="keyword type">double</span> <span class="name">xa</span><span class="punctuation">[</span><span class="literal number integer">1000</span><span class="punctuation">][</span><span class="literal number integer">1000</span><span class="punctuation">];</span>
+<span class="ln">3 </span>  <span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">,</span><span class="name">j</span><span class="punctuation">;</span>
+<span class="ln">4 </span>  <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">&lt;</span><span class="literal number integer">1000</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">++</span><span class="punctuation">)</span>
+<span class="ln">5 </span>    <span class="keyword">for</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">&lt;</span><span class="literal number integer">1000</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span>
+<span class="ln">6 </span>      <span class="name">xa</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">][</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">i</span><span class="operator">*</span><span class="literal number integer">1000</span><span class="operator">+</span><span class="name">j</span><span class="punctuation">;</span>
+<span class="ln">7 </span><span class="punctuation">}</span>
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="segmentation">
+<h1>قطعه‌بندی (segmentation)</h1>
+<img alt="img/memory/memory_segmentation_logical_address.png" class="align-center" src="img/memory/memory_segmentation_logical_address.png" style="width: 384.0px; height: 492.0px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_segmentation_example.png" class="align-center" src="img/memory/memory_segmentation_example.png" style="width: 652.8000000000001px; height: 580.0px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_segmentation_hardware.png" class="align-center" src="img/memory/memory_segmentation_hardware.png" style="width: 740.8000000000001px; height: 526.4px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_segmentation_logical2physical_address.png" class="align-center" src="img/memory/memory_segmentation_logical2physical_address.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="id28">
+<h1>اشتراک گذاری در قطعه‌بندی</h1>
+<p>Sharing segments</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id29">
+<h1>ترکیب قطعه‌بندی و صفحه‌بندی</h1>
+<p>مانند صفحه‌بندی دو سطحی با این تفاوت که در سطح یکم قطعه‌بندی انجام می‌شود و در سطح دوم صفحه‌بندی انجام می‌شود.</p>
+<hr class="docutils" />
+<img alt="img/memory/memory_management_techniques.png" class="align-center" src="img/memory/memory_management_techniques.png" />
+</div>
+<hr class="docutils" />
+<div class="section" id="ia32">
+<h1>ساختار حافظهٔ قطعه‌بندی شده در پردازنده‌های اینتل ۳۲ بیتی (IA32)</h1>
+<img alt="img/memory/memory_real_hardware_example_IA-32_segmentation_logical2physical.png" class="align-center" src="img/memory/memory_real_hardware_example_IA-32_segmentation_logical2physical.png" style="width: 679.6999999999999px; height: 95.19999999999999px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_real_hardware_example_IA-32_segmentation.png" class="align-center" src="img/memory/memory_real_hardware_example_IA-32_segmentation.png" />
+<hr class="docutils" />
+<ul class="simple">
+<li>بیشترین حافظه‌ای که می‌تواند پشتیبانی کند: 4GB</li>
+<li>بیشترین تعداد قطعه در یک فرآیند: 16KB</li>
+<li>بیشترین تعداد قطعهٔ اختصاصی برای یک فرآیند: 8KB برای دسترسی این بخش local descriptor table ( LDT ) به کار برده می‌شود.</li>
+<li>بیشترین تعداد قطعهٔ اشتراکی برای یک فرآیند با دیگر فرآیندها: 8KB برای دسترسی به این بخش global descriptor table ( GDT ) به کار برده می‌شود.</li>
+</ul>
+<hr class="docutils" />
+<table border="1" class="ltr docutils">
+<caption>بخش انتخاب کنندهٔ واحد قطعه‌بندی</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><cite>شمارهٔ قطعه</cite></th>
+<th class="head"><cite>اختصاصی یا اشتراکی</cite></th>
+<th class="head"><cite>حفاظت</cite></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>13</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="id30">
+<h1>ساختار حافظهٔ صفحه‌بندی شده در پردازنده‌های اینتل ۳۲ بیتی (IA32)</h1>
+<table border="1" class="ltr docutils">
+<caption>صفحه‌بندی ۴ کیلوبایتی</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><cite>جدولِ صفحهٔ یکم</cite></th>
+<th class="head"><cite>جدولِ صفحهٔ دوم</cite></th>
+<th class="head"><cite>جابجایی</cite></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>۱۰</td>
+<td>۱۰</td>
+<td>۱۲</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="ltr docutils">
+<caption>صفحه‌بندی ۴ مگابایتی</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><cite>جدولِ صفحه</cite></th>
+<th class="head"><cite>جابجایی</cite></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>۱۰</td>
+<td>۲۲</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<img alt="img/memory/memory_real_hardware_example_IA-32_paging_4KB.png" class="align-center" src="img/memory/memory_real_hardware_example_IA-32_paging_4KB.png" />
+<hr class="docutils" />
+<img alt="img/memory/memory_real_hardware_example_IA-32_paging_4KB_page_address_extension.png" class="align-center" src="img/memory/memory_real_hardware_example_IA-32_paging_4KB_page_address_extension.png" style="width: 721.6999999999999px; height: 275.79999999999995px;" />
+<hr class="docutils" />
+<img alt="img/memory/memory_real_hardware_example_x86_64_4KB_page_size_32_bit_pae_paging.png" class="align-center" src="img/memory/memory_real_hardware_example_x86_64_4KB_page_size_32_bit_pae_paging.png" style="width: 645.6px; height: 396.0px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="amd64-x86-64">
+<h1>ساختار حافظه در پردازنده‌های «اِ اِم دی» ۶۴ بیتی (AMD64 یا <cite>x86_64</cite> )</h1>
+<img alt="img/memory/memory_real_hardware_example_x86_64_4KB_page_size.png" class="align-center" src="img/memory/memory_real_hardware_example_x86_64_4KB_page_size.png" style="width: 737.8px; height: 80.5px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="arm32">
+<h1>ساختار حافظه در پردازنده‌های «آرم» ۳۲ بیتی (ARM32)</h1>
+<img alt="img/memory/memory_real_hardware_example_ARM32.png" class="align-center" src="img/memory/memory_real_hardware_example_ARM32.png" style="width: 700.0px; height: 459.9px;" />
+</div>
+<hr class="docutils" />
+<div class="section" id="references">
+<h1>References:</h1>
+<ul class="simple">
+<li><a class="reference external" href="https://stackoverflow.com/questions/18550370/calculate-the-effective-access-time">https://stackoverflow.com/questions/18550370/calculate-the-effective-access-time</a></li>
+<li><a class="reference external" href="http://os-book.com/">http://os-book.com/</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Paging">https://en.wikipedia.org/wiki/Paging</a></li>
+</ul>
+<!-- comments:
+
+* `<https://en.wikipedia.org/wiki/Page_(computer_memory)>`_
+* http://blog.cs.miami.edu/burt/2012/10/31/virtual-memory-pages-and-page-frames/
+* `<https://www.tldp.org/LDP/tlk/mm/memory.html>`_
+* https://www.geeksforgeeks.org/operating-system-paging/
+* https://samypesse.gitbooks.io/how-to-create-an-operating-system/Chapter-8/
+* https://www.cse.iitb.ac.in/~mythili/teaching/cs347_autumn2016/notes/07-memory.pdf
+* https://www.kernel.org/doc/html/latest/admin-guide/mm/index.html
+* operating systems paging kernel -->
+<!-- comments:
+
+rst2html.py memory.rst memory.html - -stylesheet=../../tools/farsi.css,html4css1.css -->
+</div>
+</div>
+</body>
+</html>

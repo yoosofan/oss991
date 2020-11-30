@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>مدیریت دیسک</title>
+<meta content="fa" http-equiv="Content-Language" />
+<style type="text/css">
+
+/* Use these two if the main document direction is RTL */
+body { direction: rtl; text-align:justify;    font-family:'Nazli', Geneva, sans-serif; font-size: 1.1em;}
+div.sidebar { float: left !important; }
+
+/* The next 3 rules are very useful in documents containing pieces
+of code in english */
+/* Use this if you all your literal blocks (::) are LTR */
+pre {direction: ltr; unicode-bidi: embed; }
+/* Use this if you all your inline literals (``) are LTR */
+tt {direction: ltr; unicode-bidi: embed; }
+/* Use this if you all your interpretted text (`) is LTR */
+cite {direction: ltr; unicode-bidi: embed; }
+
+/* Allow manual direction override by class directive and roles */
+.rtl { direction: rtl; }
+.ltr { direction: ltr; }
+.center {text-align: center;}
+.toc-backref {     font-size: 1em;}
+.section h1{    font-size: 1.3em;}
+.section h2{    font-size: 1.3em;}
+
+</style>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">مدیریت دیسک</h1>
+
+<div class="section" id="id2">
+<h1>1&nbsp;&nbsp;&nbsp;دیسک</h1>
+<div class="section" id="id3">
+<h2>1.1&nbsp;&nbsp;&nbsp;ساختار دیسک</h2>
+<img alt="img/disk_Moving_head_disk_mechanism.png" class="align-center" src="img/disk_Moving_head_disk_mechanism.png" />
+</div>
+<div class="section" id="san">
+<h2>1.2&nbsp;&nbsp;&nbsp;دیسک روی شبکه (SAN)</h2>
+<img alt="img/disk_Storage_area_network.png" class="align-center" src="img/disk_Storage_area_network.png" />
+</div>
+<div class="section" id="id4">
+<h2>1.3&nbsp;&nbsp;&nbsp;سامانهٔ مدیریت پروندهٔ سیستم عامل</h2>
+</div>
+<div class="section" id="id5">
+<h2>1.4&nbsp;&nbsp;&nbsp;انواع دسترسی به دیسک</h2>
+<ul class="simple">
+<li>دسترسی ترتیبی Sequential Access</li>
+<li>دسترسی مستقیم Direct Access</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>1.5&nbsp;&nbsp;&nbsp;نمونهٔ ساده‌ای از دسترسی به یک پرونده به کمک شاخص</h2>
+<img alt="img/disk_Example_of_index_and_relative_files.png" class="align-center" src="img/disk_Example_of_index_and_relative_files.png" />
+</div>
+<div class="section" id="id7">
+<h2>1.6&nbsp;&nbsp;&nbsp;نمونهٔ ساده‌ای از سازماندهی دیسک و پوشه‌ها</h2>
+<img alt="img/disk_A_typical_file_system_organization.png" class="align-center" src="img/disk_A_typical_file_system_organization.png" />
+</div>
+<div class="section" id="id8">
+<h2>1.7&nbsp;&nbsp;&nbsp;ساختار پوشهٔ یک سطحی</h2>
+<img alt="img/disk_Single_level_directory.png" class="align-center" src="img/disk_Single_level_directory.png" />
+</div>
+<div class="section" id="id9">
+<h2>1.8&nbsp;&nbsp;&nbsp;ساختار پوشهٔ دو سطحی</h2>
+<img alt="img/disk_Two_level_directory_structure.png" class="align-center" src="img/disk_Two_level_directory_structure.png" />
+</div>
+<div class="section" id="id10">
+<h2>1.9&nbsp;&nbsp;&nbsp;ساختار پوشه به صورت گراف بدون چرخه</h2>
+<img alt="img/disk_Acyclic_graph_directory_structure.png" class="align-center" src="img/disk_Acyclic_graph_directory_structure.png" />
+</div>
+<div class="section" id="id11">
+<h2>1.10&nbsp;&nbsp;&nbsp;ساختار پوشه به صورت گراف عمومی</h2>
+<img alt="img/disk_General_graph_directory.png" class="align-center" src="img/disk_General_graph_directory.png" />
+</div>
+<div class="section" id="id12">
+<h2>1.11&nbsp;&nbsp;&nbsp;سامانهٔ پروندهٔ چند لایه</h2>
+<img alt="img/disk_Layered_file_system.png" class="align-center" src="img/disk_Layered_file_system.png" />
+</div>
+<div class="section" id="id13">
+<h2>1.12&nbsp;&nbsp;&nbsp;نمونه‌ای از بلاک کنترل پرونده</h2>
+<img alt="img/disk_A_typical_file_control_block.png" class="align-center" src="img/disk_A_typical_file_control_block.png" />
+</div>
+<div class="section" id="id14">
+<h2>1.13&nbsp;&nbsp;&nbsp;ساختار پرونده در حافظه</h2>
+<img alt="img/disk_In_memory_file_system_structures_a_File_open_b_File_read.png" class="align-center" src="img/disk_In_memory_file_system_structures_a_File_open_b_File_read.png" />
+<ul class="simple">
+<li>بازکردن پرونده (a)</li>
+<li>خواندن از پرونده(b)</li>
+</ul>
+<hr class="docutils" />
+<img alt="img/disk_Schematic_view_of_a_virtual_file_system.png" class="align-center" src="img/disk_Schematic_view_of_a_virtual_file_system.png" />
+</div>
+</div>
+<div class="section" id="id15">
+<h1>2&nbsp;&nbsp;&nbsp;روش‌های تخصیص پرونده</h1>
+<div class="section" id="id16">
+<h2>2.1&nbsp;&nbsp;&nbsp;تخصیص به صورت پیوسته</h2>
+<img alt="img/disk_Contiguous_allocation_of_disk_space.png" class="align-center" src="img/disk_Contiguous_allocation_of_disk_space.png" />
+<ul class="simple">
+<li>تکه تکه شدن یا پراکندگی خارجی</li>
+<li>افزودن بلاک به پرونده</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>2.2&nbsp;&nbsp;&nbsp;تخصیص به صورت لیست پیوندی</h2>
+<img alt="img/disk_Linked_allocation_of_disk_space.png" class="align-center" src="img/disk_Linked_allocation_of_disk_space.png" />
+<div class="section" id="fat">
+<h3>2.2.1&nbsp;&nbsp;&nbsp;ساختار پرونده FAT</h3>
+<img alt="img/disk_File_allocation_table.png" class="align-center" src="img/disk_File_allocation_table.png" />
+</div>
+</div>
+<div class="section" id="index">
+<h2>2.3&nbsp;&nbsp;&nbsp;تخصیص به کمک نمایه (شاخص Index)</h2>
+<img alt="img/disk_Indexed_allocation_of_disk_space.png" class="align-center" src="img/disk_Indexed_allocation_of_disk_space.png" />
+</div>
+<div class="section" id="id18">
+<h2>2.4&nbsp;&nbsp;&nbsp;تخصیص به کمک نمایه-پیوسته</h2>
+<img alt="img/disk_Indexed_Allocation_with_Variable_Length_Portions.png" class="align-center" src="img/disk_Indexed_Allocation_with_Variable_Length_Portions.png" />
+<div class="section" id="id19">
+<h3>2.4.1&nbsp;&nbsp;&nbsp;ساختار پروندهٔ یونیکس</h3>
+<img alt="img/disk_The_UNIX_inode.png" class="align-center" src="img/disk_The_UNIX_inode.png" />
+</div>
+</div>
+<div class="section" id="id20">
+<h2>2.5&nbsp;&nbsp;&nbsp;مقایسهٔ تخصیص‌های گوناگون</h2>
+<img alt="img/disk_File_Allocation_Methods.png" class="align-center" src="img/disk_File_Allocation_Methods.png" />
+</div>
+</div>
+<div class="section" id="id21">
+<h1>3&nbsp;&nbsp;&nbsp;مدیریت فضای آزاد دیسک</h1>
+<div class="section" id="id22">
+<h2>3.1&nbsp;&nbsp;&nbsp;لیست پیوندی</h2>
+<img alt="img/disk_free_Linked_space_list_on_disk.png" class="align-center" src="img/disk_free_Linked_space_list_on_disk.png" />
+</div>
+<div class="section" id="id23">
+<h2>3.2&nbsp;&nbsp;&nbsp;بردار بیتی</h2>
+</div>
+</div>
+<div class="section" id="id24">
+<h1>4&nbsp;&nbsp;&nbsp;ساختار ورودی-خروجی</h1>
+<div class="section" id="id25">
+<h2>4.1&nbsp;&nbsp;&nbsp;گذرگاه کامپیوتر</h2>
+<img alt="img/IO_A_typical_PC_bus_structure.png" class="align-center" src="img/IO_A_typical_PC_bus_structure.png" />
+</div>
+<div class="section" id="id26">
+<h2>4.2&nbsp;&nbsp;&nbsp;پورت‌ها</h2>
+<img alt="img/IO_Device_I_O_port_locations_on_PCs_partial.png" class="align-center" src="img/IO_Device_I_O_port_locations_on_PCs_partial.png" />
+</div>
+<div class="section" id="id27">
+<h2>4.3&nbsp;&nbsp;&nbsp;وضعیت درخواست‌های دیسک</h2>
+<img alt="img/IO_Device_status_table.png" class="align-center" src="img/IO_Device_status_table.png" />
+</div>
+</div>
+<div class="section" id="id28">
+<h1>5&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک</h1>
+<p>دنبالهٔ درخواست‌های فرآیندهای گوناگون به سیلندرهای گوناگون دیسک و چگونگی تغییر ترتیب پاسخ‌گویی به آنها و مشکلات‌شان با توجه به وضعیت دیسک</p>
+<p>پارامترهایی که برای زمان‌بندی دیسک اهمیت دارد.</p>
+<p>بخش مدیریت پروندهٔ دیسک و فرآیندهای آن</p>
+<div class="section" id="fcfs">
+<h2>5.1&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش FCFS</h2>
+<img alt="img/disk_FCFS_disk_scheduling.png" class="align-center" src="img/disk_FCFS_disk_scheduling.png" />
+</div>
+<div class="section" id="sstf">
+<h2>5.2&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش SSTF</h2>
+<img alt="img/disk_SSTF_disk_scheduling.png" class="align-center" src="img/disk_SSTF_disk_scheduling.png" />
+</div>
+<div class="section" id="scan">
+<h2>5.3&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش SCAN</h2>
+<img alt="img/disk_SCAN_disk_scheduling.png" class="align-center" src="img/disk_SCAN_disk_scheduling.png" />
+</div>
+<div class="section" id="c-scan">
+<h2>5.4&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش C-SCAN</h2>
+<img alt="img/disk_C_SCAN_disk_scheduling.png" class="align-center" src="img/disk_C_SCAN_disk_scheduling.png" />
+</div>
+<div class="section" id="look">
+<h2>5.5&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش Look</h2>
+</div>
+<div class="section" id="c-look">
+<h2>5.6&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش C-Look</h2>
+</div>
+<div class="section" id="f-scan">
+<h2>5.7&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش F-SCAN</h2>
+</div>
+<div class="section" id="n-step-scan">
+<h2>5.8&nbsp;&nbsp;&nbsp;زمان‌بندی دیسک به روش n-step SCAN</h2>
+</div>
+<div class="section" id="id29">
+<h2>5.9&nbsp;&nbsp;&nbsp;چند الگوریتم زمان‌بندی دیسک</h2>
+<img alt="img/disk_Disk_Scheduling_Algorithms.png" class="align-center" src="img/disk_Disk_Scheduling_Algorithms.png" />
+</div>
+<div class="section" id="id30">
+<h2>5.10&nbsp;&nbsp;&nbsp;نمونه‌ای از مقایسهٔ چند الگوریتم</h2>
+<img alt="img/disk_Comparison_of_Disk_Scheduling_Algorithms.png" class="align-center" src="img/disk_Comparison_of_Disk_Scheduling_Algorithms.png" />
+</div>
+</div>
+<div class="section" id="id31">
+<h1>6&nbsp;&nbsp;&nbsp;انجام ورودی/خروجی‌ها</h1>
+<img alt="img/IO_The_life_cycle_of_an_I_O_request.png" class="align-center" src="img/IO_The_life_cycle_of_an_I_O_request.png" />
+</div>
+<div class="section" id="raid">
+<h1>7&nbsp;&nbsp;&nbsp;RAID</h1>
+<img alt="img/disk_raid_levels.png" class="align-center" src="img/disk_raid_levels.png" />
+<!-- comments:
+
+rst2html.py disk.rst disk.html - -stylesheet=../../tools/farsi.css,html4css1.css -->
+</div>
+</div>
+</body>
+</html>

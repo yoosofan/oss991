@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>Process Synchronization</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="process-synchronization">
+<h1 class="title">Process Synchronization</h1>
+
+<div class="section" id="software-solution-for-2-process">
+<h1>1&nbsp;&nbsp;&nbsp;Software solution for 2 process</h1>
+<p>Shared code</p>
+<pre class="code cpp literal-block">
+<span class="keyword type">bool</span> <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span><span class="operator">=</span><span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">,</span> <span class="name builtin">false</span><span class="punctuation">};</span>
+<span class="keyword type">int</span> <span class="name">turn</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+</pre>
+<p>Pi (P0)</p>
+<pre class="code cpp literal-block">
+<span class="name">need</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+<span class="keyword">while</span><span class="punctuation">(</span><span class="name">need</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="name builtin">true</span> <span class="operator">&amp;&amp;</span> <span class="name">turn</span> <span class="operator">==</span> <span class="name">i</span><span class="punctuation">)</span>
+  <span class="punctuation">;</span>
+
+<span class="name">CS</span>
+
+<span class="name">need</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="name">turn</span> <span class="operator">=</span> <span class="name">j</span><span class="punctuation">;</span>
+</pre>
+<p>Pj (P1)</p>
+<pre class="code cpp literal-block">
+<span class="name">need</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+<span class="keyword">while</span><span class="punctuation">(</span><span class="name">need</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="name builtin">true</span> <span class="operator">&amp;&amp;</span> <span class="name">turn</span> <span class="operator">==</span> <span class="name">j</span><span class="punctuation">)</span>
+  <span class="punctuation">;</span>
+
+<span class="name">CS</span>
+
+<span class="name">need</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="name">turn</span> <span class="operator">=</span> <span class="name">i</span><span class="punctuation">;</span>
+</pre>
+<p>Trace</p>
+<pre class="code sh literal-block">
+p0-1
+p0-3
+p1-1
+p1-2
+p0-4
+p1-1
+...
+
+p0-5
+p1-3
+</pre>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr><td colspan="2"><pre class="code cpp first last literal-block">
+<span class="ln">1 </span><span class="comment single">// Shared section
+</span><span class="ln">2 </span><span class="comment single"></span><span class="keyword type">int</span> <span class="name">turn</span> <span class="operator">=</span> <span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln">3 </span><span class="keyword type">bool</span> <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">,</span> <span class="name builtin">false</span><span class="punctuation">};</span>
+</pre>
+</td>
+</tr>
+<tr><td><pre class="code cpp first last literal-block">
+<span class="ln"> 1 </span><span class="keyword type">void</span> <span class="name function">P0</span><span class="punctuation">(){</span>
+<span class="ln"> 2 </span>  <span class="keyword">do</span><span class="punctuation">{</span>
+<span class="ln"> 3 </span>    <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+<span class="ln"> 4 </span>    <span class="name">turn</span> <span class="operator">=</span> <span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln"> 5 </span>    <span class="keyword">while</span><span class="punctuation">(</span><span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">==</span><span class="name builtin">true</span>
+<span class="ln"> 6 </span>          <span class="operator">&amp;&amp;</span> <span class="name">turn</span> <span class="operator">==</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+<span class="ln"> 7 </span>        <span class="punctuation">;</span>
+<span class="ln"> 8 </span>
+<span class="ln"> 9 </span>    <span class="comment single">// Critical Section
+</span><span class="ln">10 </span><span class="comment single"></span>
+<span class="ln">11 </span>    <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="ln">12 </span>
+<span class="ln">13 </span>    <span class="comment single">// Reminder Section
+</span><span class="ln">14 </span><span class="comment single"></span>
+<span class="ln">15 </span> <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="name builtin">true</span><span class="punctuation">);</span>
+</pre>
+</td>
+<td><pre class="code cpp first last literal-block">
+<span class="ln"> 1 </span><span class="keyword type">void</span> <span class="name function">P1</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+<span class="ln"> 2 </span>  <span class="keyword">do</span><span class="punctuation">{</span>
+<span class="ln"> 3 </span>    <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+<span class="ln"> 4 </span>    <span class="name">turn</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="ln"> 5 </span>    <span class="keyword">while</span><span class="punctuation">(</span><span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">==</span><span class="name builtin">true</span>
+<span class="ln"> 6 </span>          <span class="operator">&amp;&amp;</span> <span class="name">turn</span> <span class="operator">==</span> <span class="literal number integer">0</span><span class="punctuation">)</span>
+<span class="ln"> 7 </span>        <span class="punctuation">;</span>
+<span class="ln"> 8 </span>
+<span class="ln"> 9 </span>    <span class="comment single">// Critical Section
+</span><span class="ln">10 </span><span class="comment single"></span>
+<span class="ln">11 </span>    <span class="name">need</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="ln">12 </span>
+<span class="ln">13 </span>    <span class="comment single">// Reminder Section
+</span><span class="ln">14 </span><span class="comment single"></span>
+<span class="ln">15 </span> <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="name builtin">true</span><span class="punctuation">);</span>
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="code cpp literal-block">
+<span class="ln"> 1 </span> <span class="comment single">// Share section
+</span><span class="ln"> 2 </span><span class="comment single"></span> <span class="keyword type">int</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="punctuation">{</span><span class="literal number integer">0</span><span class="punctuation">};</span>
+<span class="ln"> 3 </span> <span class="keyword type">bool</span> <span class="name">choose</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">]</span><span class="operator">=</span> <span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">};</span>
+<span class="ln"> 4 </span>
+<span class="ln"> 5 </span> <span class="comment single">// Each process
+</span><span class="ln"> 6 </span><span class="comment single"></span> <span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">max</span><span class="punctuation">(</span><span class="name">number</span><span class="punctuation">,</span><span class="name">n</span><span class="punctuation">)</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln"> 7 </span> <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">){</span>
+<span class="ln"> 8 </span>   <span class="keyword">while</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">&gt;</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span>
+<span class="ln"> 9 </span>        <span class="operator">&amp;&amp;</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">)</span> <span class="operator">||</span>
+<span class="ln">10 </span>        <span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+<span class="ln">11 </span>        <span class="operator">&amp;&amp;</span> <span class="name">i</span><span class="operator">&lt;</span><span class="name">j</span>  <span class="punctuation">)</span> <span class="punctuation">);</span>
+<span class="ln">12 </span> <span class="comment multiline">/* Critical Section */</span>
+<span class="ln">13 </span> <span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="ln">14 </span> <span class="comment single">//</span>
+</pre>
+<pre class="code cpp literal-block">
+<span class="ln"> 1 </span> <span class="comment single">// Share section
+</span><span class="ln"> 2 </span><span class="comment single"></span> <span class="keyword type">int</span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">3</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="punctuation">{</span><span class="literal number integer">0</span><span class="punctuation">};</span>
+<span class="ln"> 3 </span> <span class="keyword type">bool</span> <span class="name">choose</span><span class="punctuation">[</span><span class="literal number integer">3</span><span class="punctuation">]</span><span class="operator">=</span> <span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">};</span>
+<span class="ln"> 4 </span>
+<span class="ln"> 5 </span> <span class="comment single">// P0
+</span><span class="ln"> 6 </span><span class="comment single"></span> <span class="name">t</span><span class="operator">=</span><span class="name">max</span><span class="punctuation">(</span><span class="name">number</span><span class="punctuation">,</span><span class="literal number integer">3</span><span class="punctuation">);</span>
+<span class="ln"> 7 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">t</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln"> 8 </span> <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">3</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">3</span><span class="punctuation">){</span>
+<span class="ln"> 9 </span>   <span class="keyword">while</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">&gt;</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">)</span><span class="operator">||</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span><span class="operator">&amp;&amp;</span> <span class="literal number integer">0</span><span class="operator">&lt;</span><span class="name">j</span><span class="punctuation">));</span>
+<span class="ln">10 </span> <span class="comment multiline">/* Critical Section */</span>
+<span class="ln">11 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="ln">12 </span>
+<span class="ln">13 </span> <span class="comment single">// P1
+</span><span class="ln">14 </span><span class="comment single"></span> <span class="name">t</span><span class="operator">=</span><span class="name">max</span><span class="punctuation">(</span><span class="name">number</span><span class="punctuation">,</span><span class="literal number integer">3</span><span class="punctuation">);</span>
+<span class="ln">15 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">t</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln">16 </span> <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">!=</span><span class="literal number integer">1</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">){</span>
+<span class="ln">17 </span>   <span class="keyword">while</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">&gt;</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">)</span><span class="operator">||</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span><span class="operator">&amp;&amp;</span> <span class="literal number integer">1</span><span class="operator">&lt;</span><span class="name">j</span><span class="punctuation">));</span>
+<span class="ln">18 </span> <span class="comment multiline">/* Critical Section */</span>
+<span class="ln">19 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="ln">20 </span>
+<span class="ln">21 </span> <span class="comment single">// P2
+</span><span class="ln">22 </span><span class="comment single"></span> <span class="name">t</span><span class="operator">=</span><span class="name">max</span><span class="punctuation">(</span><span class="name">number</span><span class="punctuation">,</span><span class="literal number integer">3</span><span class="punctuation">);</span>
+<span class="ln">23 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">t</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="ln">24 </span> <span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">3</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">!=</span><span class="literal number integer">2</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">3</span><span class="punctuation">){</span>
+<span class="ln">25 </span>   <span class="keyword">while</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span><span class="operator">&gt;</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">)</span><span class="operator">||</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span><span class="operator">&amp;&amp;</span> <span class="literal number integer">2</span><span class="operator">&lt;</span><span class="name">j</span><span class="punctuation">));</span>
+<span class="ln">26 </span> <span class="comment multiline">/* Critical Section */</span>
+<span class="ln">27 </span> <span class="name">number</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+</pre>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>P0-6 (number[0]==0)</td>
+<td>P1-16 (number[1]== 1)</td>
+<td>P2-24 (number[2]== 2)</td>
+<td>P1-19 (number[1] == 0)</td>
+<td>P2-26 (number[2] == 2)</td>
+<td>P0-8 (number[0] == 1)</td>
+<td>P0-10 (number[0] == 1)</td>
+</tr>
+</tbody>
+</table>
+<p>Mutual exclusion violation</p>
+<pre class="code cpp literal-block">
+<span class="keyword type">int</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="punctuation">{</span><span class="literal number integer">0</span><span class="punctuation">};</span>
+<span class="keyword type">bool</span> <span class="name">choose</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">]</span><span class="operator">=</span> <span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">};</span>
+</pre>
+<pre class="code cpp literal-block">
+<span class="name">choose</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">true</span><span class="punctuation">;</span>
+<span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">max</span><span class="punctuation">(</span><span class="name">number</span><span class="punctuation">,</span><span class="name">n</span><span class="punctuation">)</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+<span class="name">choose</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="keyword">for</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">;</span><span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">){</span>
+  <span class="keyword">while</span><span class="punctuation">(</span><span class="name">choose</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">==</span><span class="name builtin">true</span><span class="punctuation">)</span>
+      <span class="punctuation">;</span>
+  <span class="keyword">while</span><span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">&gt;</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span>
+       <span class="operator">&amp;&amp;</span> <span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">!=</span><span class="literal number integer">0</span><span class="punctuation">)</span> <span class="operator">||</span>
+       <span class="punctuation">((</span><span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">number</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+       <span class="operator">&amp;&amp;</span> <span class="name">i</span><span class="operator">&lt;</span><span class="name">j</span>  <span class="punctuation">)</span> <span class="punctuation">);</span>
+<span class="comment multiline">/* Critical Section */</span>
+<span class="name">number</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="comment single">//</span>
+</pre>
+</div>
+<div class="section" id="hardware">
+<h1>2&nbsp;&nbsp;&nbsp;Hardware</h1>
+<pre class="code cpp literal-block">
+<span class="comment single">// Share section
+</span><span class="keyword type">bool</span> <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+<span class="comment single">// Each process
+</span><span class="keyword">while</span><span class="punctuation">(</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>
+      <span class="punctuation">;</span>
+
+      <span class="comment single">// CRITICAL SECTION
+</span>
+<span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+</pre>
+<pre class="code cpp literal-block">
+<span class="ln"> 1 </span><span class="comment single">// P0
+</span><span class="ln"> 2 </span><span class="comment single"></span><span class="keyword">do</span><span class="punctuation">{</span>
+<span class="ln"> 3 </span>  <span class="keyword">while</span><span class="punctuation">(</span><span class="name">TS</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>
+<span class="ln"> 4 </span>    <span class="punctuation">;</span>
+<span class="ln"> 5 </span>  <span class="comment single">// CS
+</span><span class="ln"> 6 </span><span class="comment single"></span>  <span class="name">lock</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="ln"> 7 </span>  <span class="comment single">// RS
+</span><span class="ln"> 8 </span><span class="comment single"></span><span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="ln"> 9 </span>
+<span class="ln">10 </span><span class="comment single">// P1
+</span><span class="ln">11 </span><span class="comment single"></span><span class="keyword">do</span><span class="punctuation">{</span>
+<span class="ln">12 </span>  <span class="keyword">while</span><span class="punctuation">(</span><span class="name">TS</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>
+<span class="ln">13 </span>    <span class="punctuation">;</span>
+<span class="ln">14 </span>  <span class="comment single">// CS
+</span><span class="ln">15 </span><span class="comment single"></span>  <span class="name">lock</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="ln">16 </span>  <span class="comment single">// RS
+</span><span class="ln">17 </span><span class="comment single"></span><span class="punctuation">}</span>
+<span class="ln">18 </span>
+<span class="ln">19 </span><span class="comment single">// P2
+</span><span class="ln">20 </span><span class="comment single"></span><span class="keyword">do</span><span class="punctuation">{</span>
+<span class="ln">21 </span>  <span class="keyword">while</span><span class="punctuation">(</span><span class="name">TS</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>
+<span class="ln">22 </span>    <span class="punctuation">;</span>
+<span class="ln">23 </span>  <span class="comment single">// CS
+</span><span class="ln">24 </span><span class="comment single"></span>  <span class="name">lock</span> <span class="operator">=</span> <span class="name builtin">false</span><span class="punctuation">;</span>
+<span class="ln">25 </span>  <span class="comment single">// RS
+</span><span class="ln">26 </span><span class="comment single"></span><span class="punctuation">}</span>
+</pre>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>P0-3</td>
+<td>P1-12</td>
+<td>P2-21</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-14</td>
+<td>P2-21</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-16</td>
+<td>P2-21</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-16</td>
+<td>P2-23</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-12</td>
+<td>P2-23</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-12</td>
+<td>P2-25</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-14</td>
+<td>P2-25</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-14</td>
+<td>P2-21</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-16</td>
+<td>P2-21</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-16</td>
+<td>P2-23</td>
+</tr>
+<tr><td>P0-3</td>
+<td>P1-12</td>
+<td>P2-23</td>
+</tr>
+<tr><td><cite>....</cite></td>
+<td><cite>....</cite></td>
+<td><cite>....</cite></td>
+</tr>
+</tbody>
+</table>
+<p>P0 : starvation</p>
+<pre class="code cpp literal-block">
+<span class="comment single">// Share section
+</span><span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">n</span><span class="operator">=</span><span class="literal number integer">20</span><span class="punctuation">;</span>
+<span class="keyword type">bool</span> <span class="name">waiting</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">]</span><span class="operator">=</span><span class="punctuation">{</span><span class="name builtin">false</span><span class="punctuation">,</span> <span class="punctuation">...</span> <span class="punctuation">,</span> <span class="name builtin">false</span><span class="punctuation">};</span>
+<span class="keyword type">bool</span> <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+<span class="keyword">do</span><span class="punctuation">{</span>
+  <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+  <span class="keyword type">bool</span> <span class="name">key</span><span class="operator">=</span><span class="name builtin">true</span><span class="punctuation">;</span>
+  <span class="keyword">while</span><span class="punctuation">(</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">key</span><span class="punctuation">)</span>
+     <span class="name">key</span><span class="operator">=</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">);</span>
+  <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+  <span class="comment single">// CRITICAL SECTION
+</span>
+  <span class="keyword type">int</span> <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+  <span class="keyword">while</span><span class="punctuation">((</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">)</span> <span class="operator">&amp;&amp;</span> <span class="operator">!</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+     <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+  <span class="keyword">if</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">==</span><span class="name">i</span><span class="punctuation">)</span>  <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+  <span class="keyword">else</span>      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+  <span class="comment single">// REMINDER SECTION
+</span>
+<span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+</pre>
+</div>
+<div class="section" id="semaphore">
+<h1>3&nbsp;&nbsp;&nbsp;Semaphore</h1>
+<div class="section" id="first-semaphore-implementation-with-busy-waiting">
+<h2>3.1&nbsp;&nbsp;&nbsp;First semaphore implementation with busy waiting</h2>
+<pre class="code cpp literal-block">
+<span class="keyword">class</span> <span class="name class">Semaphore</span><span class="punctuation">{</span>
+  <span class="keyword type">int</span> <span class="name">s</span><span class="punctuation">;</span>
+  <span class="keyword">public</span><span class="operator">:</span>
+  <span class="name">Semaphore</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">n</span><span class="punctuation">){</span><span class="name">s</span><span class="operator">=</span><span class="name">n</span><span class="punctuation">;}</span>
+  <span class="name">P</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="keyword">while</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;=</span><span class="literal number integer">0</span><span class="punctuation">)</span>
+      <span class="punctuation">;</span>
+    <span class="name">s</span><span class="operator">--</span><span class="punctuation">;</span>
+  <span class="punctuation">}</span>
+
+  <span class="name">V</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="name">s</span><span class="operator">++</span><span class="punctuation">;</span>
+  <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+
+
+<span class="comment single">// Shared section
+</span><span class="name">Semaphore</span> <span class="name">mutex</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">;</span>
+
+<span class="comment single">// Each process use the following structure for CS
+</span><span class="keyword type">void</span> <span class="name function">f</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+  <span class="name">mutex</span><span class="punctuation">.</span><span class="name">P</span><span class="punctuation">();</span>
+
+  <span class="comment single">// CS
+</span>
+  <span class="name">mutex</span><span class="punctuation">.</span><span class="name">V</span><span class="punctuation">();</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="second-semaphore-implementation-without-busy-waiting">
+<h2>3.2&nbsp;&nbsp;&nbsp;Second semaphore implementation without busy waiting</h2>
+<pre class="code cpp literal-block">
+<span class="keyword">class</span> <span class="name class">semaphore</span><span class="punctuation">{</span>
+   <span class="keyword type">int</span> <span class="name">s</span><span class="punctuation">;</span> <span class="name">myIntQueue</span> <span class="name">q</span><span class="punctuation">;</span>
+  <span class="keyword">public</span><span class="operator">:</span>
+   <span class="keyword type">void</span> <span class="name">P</span><span class="punctuation">(){</span>
+     <span class="name">s</span><span class="operator">--</span><span class="punctuation">;</span>
+     <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+       <span class="name">q</span><span class="punctuation">.</span><span class="name">add</span><span class="punctuation">(</span><span class="name">OS_getMyProcessPID</span><span class="punctuation">());</span>
+       <span class="name">OS_block_me</span><span class="punctuation">();</span> <span class="comment single">// get cpu from me and do not add me to ready queue
+</span>     <span class="punctuation">}</span>
+   <span class="punctuation">}</span>
+   <span class="keyword type">void</span> <span class="name">V</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+     <span class="name">s</span><span class="operator">++</span><span class="punctuation">;</span>
+     <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;=</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+       <span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="name">q</span><span class="punctuation">.</span><span class="name">del</span><span class="punctuation">();</span> <span class="comment single">// remove and return first element of queue
+</span>       <span class="name">OS_wakeup_process</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span> <span class="comment single">// add process number i (PID==i) to ready queue, so it can be run
+</span>     <span class="punctuation">}</span>
+   <span class="punctuation">}</span>
+   <span class="name">semaphore</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="literal number integer">1</span><span class="punctuation">){</span><span class="name">s</span><span class="operator">=</span><span class="name">i</span><span class="punctuation">;}</span>
+<span class="punctuation">};</span>
+</pre>
+</div>
+<div class="section" id="external-functions-and-class-for-semaphore">
+<h2>3.3&nbsp;&nbsp;&nbsp;external functions and class for semaphore</h2>
+<pre class="code cpp literal-block">
+<span class="keyword type">bool</span> <span class="name function">testAndSet</span><span class="punctuation">(</span><span class="keyword type">bool</span> <span class="operator">&amp;</span><span class="name">target</span><span class="punctuation">){</span>
+   <span class="keyword type">bool</span> <span class="name">rv</span><span class="operator">=</span><span class="name">target</span><span class="punctuation">;</span>
+   <span class="name">target</span><span class="operator">=</span><span class="name builtin">true</span><span class="punctuation">;</span>
+   <span class="keyword">return</span> <span class="name">rv</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+<span class="keyword">class</span> <span class="name class">myIntQueue</span> <span class="punctuation">{</span>
+  <span class="keyword">private</span><span class="operator">:</span>
+    <span class="keyword type">int</span> <span class="name">bufferOfQueue</span><span class="punctuation">[</span><span class="name">MAX_NUMBER_WAIT_PROCESS_FOR_A_SEMAPHORE</span><span class="punctuation">];</span>
+    <span class="keyword type">int</span> <span class="name">first</span><span class="punctuation">,</span><span class="name">last</span><span class="punctuation">;</span>
+
+  <span class="keyword">public</span><span class="operator">:</span>
+    <span class="name">myIntQueue</span><span class="punctuation">(){</span><span class="name">first</span><span class="operator">=</span><span class="name">last</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;}</span>
+    <span class="keyword type">int</span> <span class="name">add</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+      <span class="name">bufferOfQueue</span><span class="punctuation">[</span><span class="name">last</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">i</span><span class="punctuation">;</span>
+      <span class="name">last</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">last</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">MAX_NUMBER_WAIT_PROCESS_FOR_A_SEMAPHORE</span> <span class="punctuation">;</span>
+      <span class="keyword">return</span> <span class="name">i</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span>
+    <span class="keyword type">int</span> <span class="name">del</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+      <span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="name">bufferOfQueue</span><span class="punctuation">[</span><span class="name">first</span><span class="punctuation">];</span>
+      <span class="name">first</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">first</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">MAX_NUMBER_WAIT_PROCESS_FOR_A_SEMAPHORE</span> <span class="punctuation">;</span>
+      <span class="keyword">return</span> <span class="name">i</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span>
+<span class="punctuation">};</span>
+<span class="keyword type">void</span> <span class="name function">OS_wakeup_process</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">pid</span><span class="punctuation">){}</span> <span class="comment single">// add process number i (PID==i) to ready queue, so it can be run
+</span><span class="keyword type">void</span> <span class="name function">OS_block_me</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){}</span> <span class="comment single">// get cpu from me and do not add me to ready queue
+</span><span class="keyword type">int</span> <span class="name function">OS_getMyProcessPID</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span><span class="keyword">return</span> <span class="literal number integer">1</span><span class="punctuation">;}</span>
+</pre>
+</div>
+<div class="section" id="third-semaphore-implementation-using-hardware-mutual-exclusion-in-p-and-v">
+<h2>3.4&nbsp;&nbsp;&nbsp;Third semaphore implementation using hardware mutual exclusion in P and V</h2>
+<pre class="code cpp literal-block">
+<span class="keyword">class</span> <span class="name class">semaphore</span><span class="punctuation">{</span>
+   <span class="keyword type">int</span> <span class="name">s</span><span class="punctuation">;</span> <span class="name">myIntQueue</span> <span class="name">q</span><span class="punctuation">;</span> <span class="keyword type">bool</span> <span class="name">lock</span><span class="punctuation">;</span>
+  <span class="keyword">public</span><span class="operator">:</span>
+   <span class="keyword type">void</span> <span class="name">P</span><span class="punctuation">(){</span>
+      <span class="keyword">while</span><span class="punctuation">(</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>  <span class="punctuation">;</span>
+      <span class="name">s</span><span class="operator">--</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+        <span class="name">q</span><span class="punctuation">.</span><span class="name">add</span><span class="punctuation">(</span><span class="name">OS_getMyProcessPID</span><span class="punctuation">());</span>
+        <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+        <span class="name">OS_block_me</span><span class="punctuation">();</span>
+      <span class="punctuation">}</span><span class="keyword">else</span> <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+   <span class="punctuation">}</span>
+   <span class="keyword type">void</span> <span class="name">V</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+      <span class="keyword">while</span><span class="punctuation">(</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">))</span>  <span class="punctuation">;</span>
+      <span class="name">s</span><span class="operator">++</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;=</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+         <span class="name">OS_wakeup_process</span><span class="punctuation">(</span><span class="name">q</span><span class="punctuation">.</span><span class="name">del</span><span class="punctuation">());</span>
+      <span class="punctuation">}</span>
+      <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+   <span class="punctuation">}</span>
+   <span class="name">semaphore</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span><span class="name">s</span><span class="operator">=</span><span class="name">i</span><span class="punctuation">;</span><span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;}</span>
+<span class="punctuation">};</span>
+</pre>
+<p>//shared section
+semaphore mutex=1;</p>
+<p>Pi</p>
+<p>mutex.P();</p>
+<p>//   Critical Section</p>
+<p>mutex.V()</p>
+<p>semaphore sem_printer=1, sem_scanner=1;</p>
+<p>sem_printer.P();</p>
+<p>// work with printer</p>
+<p>sem_printer.V();</p>
+<hr class="docutils" />
+<p>sem_scanner.P();</p>
+<p>// Work with scanner</p>
+<p>sem_sanner.V();</p>
+<hr class="docutils" />
+<p>ready queue</p>
+<p>// shared between os process
+semaphore sem_ready_queue=1;</p>
+<p>sem_ready_queue.P();</p>
+<p>// work ready queue</p>
+<p>sem_ready_queue.V();</p>
+</div>
+<div class="section" id="fourth-semaphore-implementation-without-starvation">
+<h2>3.5&nbsp;&nbsp;&nbsp;fourth semaphore implementation without starvation</h2>
+<pre class="code cpp literal-block">
+<span class="keyword">class</span> <span class="name class">semaphore</span><span class="punctuation">{</span>
+   <span class="keyword type">int</span> <span class="name">s</span><span class="punctuation">;</span> <span class="name">myIntQueue</span> <span class="name">q</span><span class="punctuation">;</span> <span class="keyword type">bool</span> <span class="name">lock</span><span class="punctuation">;</span> <span class="keyword type">bool</span> <span class="name">waiting</span><span class="punctuation">[</span><span class="name">n</span><span class="punctuation">];</span><span class="keyword type">int</span> <span class="name">numberOfWaitProcess</span><span class="punctuation">;</span>
+   <span class="keyword">public</span><span class="operator">:</span>
+   <span class="keyword type">void</span> <span class="name">P</span><span class="punctuation">(){</span>
+      <span class="keyword type">int</span> <span class="name">i</span> <span class="operator">=</span> <span class="name">OS_getMyProcessPID</span><span class="punctuation">();</span>
+      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+      <span class="keyword type">bool</span> <span class="name">key</span><span class="operator">=</span><span class="name builtin">true</span><span class="punctuation">;</span>
+      <span class="keyword">while</span><span class="punctuation">(</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">key</span><span class="punctuation">)</span>
+         <span class="name">key</span><span class="operator">=</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">);</span>
+      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+      <span class="name">s</span><span class="operator">--</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+        <span class="name">q</span><span class="punctuation">.</span><span class="name">add</span><span class="punctuation">(</span><span class="name">OS_getMyProcessPID</span><span class="punctuation">());</span>
+
+      <span class="keyword type">int</span> <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+      <span class="keyword">while</span><span class="punctuation">((</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">)</span> <span class="operator">&amp;&amp;</span> <span class="operator">!</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+         <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">==</span><span class="name">i</span><span class="punctuation">)</span>  <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+      <span class="keyword">else</span>      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+      <span class="name">OS_block_me</span><span class="punctuation">();</span>
+      <span class="punctuation">}</span>
+     <span class="keyword">else</span><span class="punctuation">{</span>
+        <span class="keyword type">int</span> <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+        <span class="keyword">while</span><span class="punctuation">((</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">)</span> <span class="operator">&amp;&amp;</span> <span class="operator">!</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+           <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+        <span class="keyword">if</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">==</span><span class="name">i</span><span class="punctuation">)</span>  <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+        <span class="keyword">else</span>      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+      <span class="punctuation">}</span>
+   <span class="punctuation">}</span>
+   <span class="keyword type">void</span> <span class="name">V</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+      <span class="keyword type">int</span> <span class="name">i</span> <span class="operator">=</span> <span class="name">OS_getMyProcessPID</span><span class="punctuation">();</span>
+      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name builtin">true</span><span class="punctuation">;</span>
+      <span class="keyword type">bool</span> <span class="name">key</span><span class="operator">=</span><span class="name builtin">true</span><span class="punctuation">;</span>
+      <span class="keyword">while</span><span class="punctuation">(</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">&amp;&amp;</span> <span class="name">key</span><span class="punctuation">)</span>
+         <span class="name">key</span><span class="operator">=</span><span class="name">testAndSet</span><span class="punctuation">(</span><span class="name">lock</span><span class="punctuation">);</span>
+      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+      <span class="name">s</span><span class="operator">++</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">s</span><span class="operator">&lt;=</span><span class="literal number integer">0</span><span class="punctuation">){</span>
+        <span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="name">q</span><span class="punctuation">.</span><span class="name">del</span><span class="punctuation">();</span>
+         <span class="name">OS_wakeup_process</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+      <span class="punctuation">}</span>
+
+      <span class="keyword type">int</span> <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+      <span class="keyword">while</span><span class="punctuation">((</span><span class="name">j</span><span class="operator">!=</span><span class="name">i</span><span class="punctuation">)</span> <span class="operator">&amp;&amp;</span> <span class="operator">!</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">])</span>
+         <span class="name">j</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">n</span><span class="punctuation">;</span>
+      <span class="keyword">if</span><span class="punctuation">(</span><span class="name">j</span><span class="operator">==</span><span class="name">i</span><span class="punctuation">)</span>  <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+      <span class="keyword">else</span>      <span class="name">waiting</span><span class="punctuation">[</span><span class="name">j</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+
+   <span class="punctuation">}</span>
+   <span class="name">semaphore</span><span class="punctuation">(){</span>
+     <span class="name">s</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span>
+     <span class="name">numberOfWaitProcess</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span>
+     <span class="keyword">for</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">&lt;</span><span class="name">n</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+     <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+   <span class="punctuation">}</span>
+   <span class="name">semaphore</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+     <span class="name">value</span><span class="operator">=</span><span class="name">i</span><span class="punctuation">;</span>
+     <span class="name">numberOfWaitProcess</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span>
+     <span class="keyword">for</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">&lt;</span><span class="name">n</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span><span class="name">waiting</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+     <span class="name">lock</span><span class="operator">=</span><span class="name builtin">false</span><span class="punctuation">;</span>
+   <span class="punctuation">}</span>
+</pre>
+</div>
+</div>
+<div class="section" id="produces-consumer-unbounded-buffer-semaphore">
+<h1>4&nbsp;&nbsp;&nbsp;Produces consumer unbounded buffer semaphore</h1>
+<pre class="code cpp literal-block">
+<span class="keyword">class</span> <span class="name class">ObjectCls</span><span class="punctuation">{</span><span class="keyword type">int</span> <span class="name">a</span><span class="punctuation">;</span> <span class="keyword type">int</span> <span class="name">b</span> <span class="punctuation">;</span> <span class="keyword type">double</span> <span class="name">x</span><span class="punctuation">;};</span>
+
+<span class="name">Object</span> <span class="name">buffer</span><span class="punctuation">[</span><span class="literal number integer">9000</span><span class="punctuation">];</span>
+<span class="name">semaphore</span> <span class="name">full</span> <span class="operator">=</span> <span class="literal number integer">0</span> <span class="punctuation">;</span>
+
+<span class="keyword type">void</span> <span class="name function">producer</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="name">Object</span> <span class="name">temp</span><span class="punctuation">;</span>
+    <span class="keyword type">int</span> <span class="name">in</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+    <span class="keyword">do</span><span class="punctuation">{</span>
+        <span class="name">x</span> <span class="operator">=</span> <span class="name">produce</span><span class="punctuation">();</span>
+        <span class="name">buffer</span><span class="punctuation">[</span><span class="name">in</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">x</span><span class="punctuation">;</span>
+        <span class="name">full</span><span class="punctuation">.</span><span class="name">V</span><span class="punctuation">();</span>
+        <span class="name">in</span> <span class="operator">++</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">void</span> <span class="name function">consumer</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="name">Object</span> <span class="name">temp</span><span class="punctuation">;</span>
+    <span class="keyword type">int</span> <span class="name">out</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+    <span class="keyword">do</span><span class="punctuation">{</span>
+        <span class="name">full</span><span class="punctuation">.</span><span class="name">P</span><span class="punctuation">();</span>
+        <span class="name">temp</span> <span class="operator">=</span> <span class="name">buffer</span><span class="punctuation">[</span><span class="name">out</span><span class="punctuation">];</span>
+        <span class="name">out</span> <span class="operator">++</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">int</span> <span class="name function">main</span><span class="punctuation">(){</span>
+   <span class="name">producer</span><span class="punctuation">();</span>
+   <span class="name">consumer</span><span class="punctuation">();</span>
+   <span class="keyword">return</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="producer-consumer-semaphore-bounded-buffer">
+<h1>5&nbsp;&nbsp;&nbsp;producer consumer semaphore bounded buffer</h1>
+<pre class="code cpp literal-block">
+<span class="keyword">struct</span> <span class="name">ObjectCls</span><span class="punctuation">{</span><span class="keyword type">int</span> <span class="name">a</span><span class="punctuation">;</span> <span class="keyword type">int</span> <span class="name">b</span> <span class="punctuation">;</span> <span class="keyword type">double</span> <span class="name">x</span><span class="punctuation">;};</span>
+<span class="name">ObjectCls</span> <span class="name function">produce</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span><span class="name">ObjectCls</span> <span class="name">x</span><span class="punctuation">;</span> <span class="name">x</span><span class="punctuation">.</span><span class="name">a</span> <span class="operator">=</span> <span class="literal number integer">1</span><span class="punctuation">;</span> <span class="keyword">return</span> <span class="name">x</span><span class="punctuation">;}</span>
+<span class="keyword type">void</span> <span class="name function">consume</span><span class="punctuation">(</span><span class="name">ObjectCls</span><span class="punctuation">){}</span>
+<span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">N</span><span class="operator">=</span><span class="literal number integer">100</span><span class="punctuation">;</span>
+<span class="name">ObjectCls</span> <span class="name">buffer</span><span class="punctuation">[</span><span class="name">N</span><span class="punctuation">];</span>
+<span class="name">semaphore</span> <span class="name">full</span> <span class="operator">=</span> <span class="literal number integer">0</span> <span class="punctuation">;</span>
+<span class="name">semaphore</span> <span class="name">empty</span><span class="operator">=</span><span class="name">N</span>
+
+<span class="keyword type">void</span> <span class="name">producer</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="name">ObjectCls</span> <span class="name">x</span><span class="punctuation">;</span>
+    <span class="keyword type">int</span> <span class="name">in</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+    <span class="keyword">do</span><span class="punctuation">{</span>
+        <span class="name">x</span> <span class="operator">=</span> <span class="name">produce</span><span class="punctuation">();</span>
+        <span class="name">empty</span><span class="punctuation">.</span><span class="name">P</span><span class="punctuation">();</span>
+        <span class="name">buffer</span><span class="punctuation">[</span><span class="name">in</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">x</span><span class="punctuation">;</span>
+        <span class="name">full</span><span class="punctuation">.</span><span class="name">V</span><span class="punctuation">();</span>
+        <span class="name">in</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">in</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">N</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">void</span> <span class="name">consumer</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span>
+    <span class="name">ObjectCls</span> <span class="name">x</span><span class="punctuation">;</span>
+    <span class="keyword type">int</span> <span class="name">out</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+    <span class="keyword">do</span><span class="punctuation">{</span>
+        <span class="name">full</span><span class="punctuation">.</span><span class="name">P</span><span class="punctuation">();</span>
+        <span class="name">x</span> <span class="operator">=</span> <span class="name">buffer</span><span class="punctuation">[</span><span class="name">out</span><span class="punctuation">];</span>
+        <span class="name">empty</span><span class="punctuation">.</span><span class="name">V</span><span class="punctuation">();</span>
+        <span class="name">out</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">out</span> <span class="operator">+</span> <span class="literal number integer">1</span><span class="punctuation">)</span> <span class="operator">%</span> <span class="name">N</span><span class="punctuation">;</span>
+        <span class="name">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">int</span> <span class="name">main</span><span class="punctuation">(){</span>
+   <span class="name">producer</span><span class="punctuation">();</span>
+   <span class="name">consumer</span><span class="punctuation">();</span>
+   <span class="keyword">return</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="python-producer-consumer-semaphore">
+<h1>6&nbsp;&nbsp;&nbsp;Python producer consumer semaphore</h1>
+<!-- code::python
+
+#import threading, time
+from threading import *
+class MyShare:
+  counter = 0; n = 10;buf = [-1] * n
+full = Semaphore(0);empty= Semaphore(10)
+def produce(x,i):print('produce ',(x+1)%100,i);return (x+1)%100
+def consume(x,i):print('consume ',x,i)
+def producer(sh1):
+    x = -1;    in1 = 0
+    for i in range(50):
+        x = produce(x,in1)
+        empty.acquire();
+        sh1.buf[in1] = x
+        in1 = (in1 + 1)%sh1.n
+        full.release();
+def consumer(sh1):
+    out =0; x=0
+    for i in range(50):
+        full.acquire()
+        x=sh1.buf[out];sh1.buf[out]=-1;out=(out +1)%sh1.n
+        empty.release()
+        consume(x,out)
+myShare = MyShare()
+th1 = Thread(target=consumer,args=(myShare,))
+th2 = Thread(target=producer,args=(myShare,))
+th1.start();th2.start();th1.join();th2.join()
+for i in range(4):  print(myShare.buf[i])
+print("counter ",myShare.counter) -->
+<pre class="code python literal-block">
+<span class="keyword namespace">from</span> <span class="name namespace">threading</span> <span class="keyword namespace">import</span> <span class="operator">*</span><span class="punctuation">;</span> <span class="keyword namespace">import</span> <span class="name namespace">time</span><span class="punctuation">;</span>
+<span class="keyword">class</span> <span class="name class">MyShare</span><span class="punctuation">:</span><span class="name">counter</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span> <span class="name">n</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span><span class="name">z1</span><span class="operator">=</span> <span class="punctuation">[</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">*</span><span class="literal number integer">5</span><span class="punctuation">;</span><span class="name">buf</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">z1</span><span class="punctuation">]</span> <span class="operator">*</span> <span class="name">n</span>
+<span class="name">full</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span><span class="name">empty</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">10</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">):</span><span class="name">y</span><span class="operator">=</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">12</span><span class="punctuation">]</span><span class="operator">*</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">%</span><span class="literal number integer">10</span><span class="operator">+</span><span class="literal number integer">2</span><span class="punctuation">);</span><span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">'__produce='</span><span class="punctuation">,</span><span class="name">y</span><span class="punctuation">);</span><span class="keyword">return</span> <span class="name">y</span><span class="punctuation">;</span>
+<span class="keyword">def</span> <span class="name function">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">):</span><span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">'__consume='</span><span class="punctuation">,</span><span class="name">x</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">producer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">in1</span> <span class="operator">=</span> <span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">450</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' before produce'</span><span class="punctuation">);</span>      <span class="name">x</span><span class="operator">=</span><span class="name">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">20</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span> <span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">)</span>
+    <span class="name">empty</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>     <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">in1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">x</span><span class="punctuation">;</span>     <span class="name">full</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span> <span class="literal string single">'After put in buffer'</span><span class="punctuation">);</span> <span class="name">in1</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">in1</span> <span class="operator">+</span> <span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">sh1</span><span class="operator">.</span><span class="name">n</span>
+<span class="keyword">def</span> <span class="name function">consumer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">out</span> <span class="operator">=</span><span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">450</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' before get from buffer'</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">25</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span><span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">);</span>
+    <span class="name">full</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>    <span class="name">x</span> <span class="operator">=</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">out</span><span class="punctuation">]</span> <span class="punctuation">;</span>   <span class="name">empty</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="name">out</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">out</span> <span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="operator">%</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">n</span> <span class="punctuation">;</span>    <span class="name">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">);</span> <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' After consume'</span><span class="punctuation">);</span>
+<span class="name">myShare</span> <span class="operator">=</span> <span class="name">MyShare</span><span class="punctuation">()</span>
+<span class="name">th1</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">consumer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th2</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">producer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th1</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th1</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">()</span>
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">):</span>  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">myShare</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">])</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;counter &quot;</span><span class="punctuation">,</span><span class="name">myShare</span><span class="operator">.</span><span class="name">counter</span><span class="punctuation">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment single"># Python 3   only</span>
+<span class="keyword namespace">from</span> <span class="name namespace">threading</span> <span class="keyword namespace">import</span> <span class="operator">*</span><span class="punctuation">;</span> <span class="keyword namespace">import</span> <span class="name namespace">time</span><span class="punctuation">;</span>
+<span class="keyword">class</span> <span class="name class">MyShare</span><span class="punctuation">:</span><span class="name">counter</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span> <span class="name">n</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span><span class="name">z1</span><span class="operator">=</span> <span class="punctuation">[</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">*</span><span class="literal number integer">5</span><span class="punctuation">;</span><span class="name">buf</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">z1</span><span class="punctuation">]</span> <span class="operator">*</span> <span class="name">n</span>
+<span class="name">full</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span><span class="name">empty</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">10</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">):</span><span class="name">y</span><span class="operator">=</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">100</span><span class="punctuation">]</span><span class="operator">*</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">%</span><span class="literal number integer">10</span><span class="operator">+</span><span class="literal number integer">2</span><span class="punctuation">);</span><span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">'__produce='</span><span class="punctuation">,</span><span class="name">y</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span><span class="keyword">return</span> <span class="name">y</span><span class="punctuation">;</span>
+<span class="keyword">def</span> <span class="name function">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">):</span><span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">'__consume='</span><span class="punctuation">,</span><span class="name">x</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">producer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">in1</span> <span class="operator">=</span> <span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">150</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' before produce'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>      <span class="name">x</span><span class="operator">=</span><span class="name">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">12</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span> <span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">)</span>
+    <span class="name">empty</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>     <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">in1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">x</span><span class="punctuation">;</span>     <span class="name">full</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span> <span class="literal string single">'After put in buffer'</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span> <span class="name">in1</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">in1</span> <span class="operator">+</span> <span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">sh1</span><span class="operator">.</span><span class="name">n</span>
+<span class="keyword">def</span> <span class="name function">consumer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">out</span> <span class="operator">=</span><span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">150</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' before get from buffer'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">13</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span><span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">);</span>
+    <span class="name">full</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>    <span class="name">x</span> <span class="operator">=</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">out</span><span class="punctuation">]</span> <span class="punctuation">;</span>   <span class="name">empty</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="name">out</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">out</span> <span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="operator">%</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">n</span> <span class="punctuation">;</span>    <span class="name">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">);</span> <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">' After consume'</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+<span class="name">myShare</span> <span class="operator">=</span> <span class="name">MyShare</span><span class="punctuation">()</span>
+<span class="name">th1</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">consumer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th2</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">producer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th1</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th1</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">()</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'main --'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">):</span>  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">myShare</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">],</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;counter &quot;</span><span class="punctuation">,</span><span class="name">myShare</span><span class="operator">.</span><span class="name">counter</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment single"># Python 3   only</span>
+<span class="keyword namespace">from</span> <span class="name namespace">threading</span> <span class="keyword namespace">import</span> <span class="operator">*</span><span class="punctuation">;</span> <span class="keyword namespace">import</span> <span class="name namespace">time</span><span class="punctuation">;</span>
+<span class="keyword">class</span> <span class="name class">MyShare</span><span class="punctuation">:</span><span class="name">counter</span> <span class="operator">=</span> <span class="literal number integer">0</span><span class="punctuation">;</span> <span class="name">n</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span><span class="name">z1</span><span class="operator">=</span> <span class="punctuation">[</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">*</span><span class="literal number integer">5</span><span class="punctuation">;</span><span class="name">buf</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">z1</span><span class="punctuation">]</span> <span class="operator">*</span> <span class="name">n</span>
+<span class="name">full</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span><span class="name">empty</span> <span class="operator">=</span> <span class="name">Semaphore</span><span class="punctuation">(</span><span class="literal number integer">10</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">):</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'(pro_'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span><span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+  <span class="name">y</span><span class="operator">=</span><span class="punctuation">((</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">100</span><span class="punctuation">)</span><span class="operator">*</span><span class="punctuation">(</span><span class="name">i</span><span class="operator">%</span><span class="literal number integer">6</span><span class="operator">+</span><span class="literal number integer">2</span><span class="punctuation">);</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">y</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">')'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;:: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+  <span class="keyword">return</span> <span class="name">y</span><span class="punctuation">;</span>
+<span class="keyword">def</span> <span class="name function">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">):</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'(con_'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;,&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;,&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+  <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">')'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;:: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">producer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">in1</span> <span class="operator">=</span> <span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">150</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="literal string single">'{pro '</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;:: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>    <span class="name">x</span><span class="operator">=</span><span class="name">produce</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">12</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span> <span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">)</span>
+    <span class="name">empty</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>     <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">in1</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">x</span><span class="punctuation">;</span>     <span class="name">full</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'Pro '</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'After'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'}'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="name">in1</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">in1</span> <span class="operator">+</span> <span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="name">sh1</span><span class="operator">.</span><span class="name">n</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+<span class="keyword">def</span> <span class="name function">consumer</span><span class="punctuation">(</span><span class="name">sh1</span><span class="punctuation">):</span>
+  <span class="name">out</span> <span class="operator">=</span><span class="literal number integer">0</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">150</span><span class="punctuation">):</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'{Con '</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'before '</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">if</span> <span class="name">i</span><span class="operator">%</span><span class="literal number integer">13</span><span class="operator">==</span><span class="literal number integer">0</span><span class="punctuation">:</span><span class="name">time</span><span class="operator">.</span><span class="name">sleep</span><span class="punctuation">(</span><span class="literal number float">0.1</span><span class="punctuation">);</span>
+    <span class="name">full</span><span class="operator">.</span><span class="name">acquire</span><span class="punctuation">();</span>    <span class="name">x</span> <span class="operator">=</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">out</span><span class="punctuation">]</span> <span class="punctuation">;</span>   <span class="name">empty</span><span class="operator">.</span><span class="name">release</span><span class="punctuation">();</span>
+    <span class="name">out</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">out</span> <span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span> <span class="operator">%</span> <span class="name">sh1</span><span class="operator">.</span><span class="name">n</span> <span class="punctuation">;</span>    <span class="name">consume</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span><span class="name">i</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'Con'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'After:'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot;&quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+    <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'}'</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">);</span>
+<span class="name">myShare</span> <span class="operator">=</span> <span class="name">MyShare</span><span class="punctuation">()</span>
+<span class="name">th1</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">consumer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th2</span> <span class="operator">=</span> <span class="name">Thread</span><span class="punctuation">(</span><span class="name">target</span><span class="operator">=</span><span class="name">producer</span><span class="punctuation">,</span><span class="name">args</span><span class="operator">=</span><span class="punctuation">(</span><span class="name">myShare</span><span class="punctuation">,))</span>
+<span class="name">th1</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">start</span><span class="punctuation">();</span><span class="name">th1</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">();</span><span class="name">th2</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">()</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string single">'main --'</span><span class="punctuation">,</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">for</span> <span class="name">i</span> <span class="operator word">in</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">):</span>  <span class="keyword">print</span><span class="punctuation">(</span><span class="name">myShare</span><span class="operator">.</span><span class="name">buf</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">],</span><span class="name">end</span><span class="operator">=</span><span class="literal string double">&quot; :: &quot;</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string double">&quot;counter &quot;</span><span class="punctuation">,</span><span class="name">myShare</span><span class="operator">.</span><span class="name">counter</span><span class="punctuation">,</span><span class="name">flush</span><span class="operator">=</span><span class="name builtin pseudo">True</span><span class="punctuation">)</span>
+</pre>
+<!-- code::python
+
+# Python 3   only
+from threading import *; import time;
+class MyShare:counter = 0; n = 4;z1= [-1]*3;buf = [z1] * n
+full = Semaphore(0);empty = Semaphore(4)
+class MyLog:
+  def produce1(self,i):
+    print('(produce_',end="",flush=True);
+    print(i,end="",flush=True);
+  def produce2(self,y,i):
+    print(y,end="",flush=True);
+    print(i,')',end=":: ",flush=True);
+  def consume(self,x,i):
+    print('(consume_',end="",flush=True);
+    print(i,end=",",flush=True);
+    print(x,end=",",flush=True);
+    print(')',end=":: ",flush=True)
+  def producer1(self,i):
+    print(i,'{producer-before',end="::",flush=True);
+  def producer2(self,i):
+    print('Proudecer-',end="",flush=True);
+    print('After',end="",flush=True);
+    print(' ',i,'}',end="",flush=True);
+  def consumer1(self,i):
+    print('{Consumer- -',end="",flush=True);
+    print('before ',end=" ",flush=True);
+    print(i,end=" :: ",flush=True);
+  def consumer2(self,i):
+    print('Consumer- -',end="",flush=True);
+    print('After:',end="",flush=True);
+    print(i,end="",flush=True);
+    print('}',flush=True);
+lg=MyLog();
+def produce(i):
+  lg.producer1(i);
+  lg.produce1(i);
+  y=[(i+1)%100]*(i%6+2);
+  lg.produce2(y,i);
+  if i%12==0:
+    time.sleep((i%5+1)/10)
+  return y;
+def consume(x,i):
+  lg.consume(x,i);
+  lg.consumer2(i)
+  if i%13==0:
+    time.sleep((i%7+1)/10);
+def producer(sh1):
+  in1 = 0
+  for i in range(100):
+    x=produce(i);
+    empty.acquire();     sh1.buf[in1] = x;     full.release();
+    in1 = (in1 + 1)%sh1.n; lg.producer2(i)
+def consumer(sh1):
+  out =0
+  for i in range(100):
+    lg.consumer1(i);
+    full.acquire();    x = sh1.buf[out] ;   empty.release();
+    out = (out +1) % sh1.n ;    consume(x,i);
+myShare = MyShare()
+th1 = Thread(target=consumer,args=(myShare,))
+th2 = Thread(target=producer,args=(myShare,))
+th1.start();th2.start();th1.join();th2.join()
+print('main - -',end=" :: ",flush=True)
+for i in range(4):  print(myShare.buf[i],end=" :: ",flush=True)
+print("counter ",myShare.counter,flush=True) -->
+</div>
+<div class="section" id="dining-philosophers-problem">
+<h1>7&nbsp;&nbsp;&nbsp;Dining philosophers problem</h1>
+<p>In computer science, the dining philosophers problem is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them.</p>
+<p>It was originally formulated in 1965 by Edsger Dijkstra as a student exam exercise, presented in terms of computers competing for access to tape drive peripherals. Soon after, Tony Hoare gave the problem its present formulation.[1][2][3]</p>
+<img alt="img/process_synchronization/An_illustration_of_the_dining_philosophers_problem.png" class="align-center" src="img/process_synchronization/An_illustration_of_the_dining_philosophers_problem.png" style="width: 565.0px; height: 586.0px;" />
+<div class="section" id="pickup-forks-one-by-one-semaphore">
+<h2>7.1&nbsp;&nbsp;&nbsp;Pickup forks one by one (semaphore)</h2>
+<pre class="code cpp literal-block">
+<span class="comment preproc">#include</span><span class="comment preprocfile">&lt;iostream&gt;</span><span class="comment preproc">
+</span><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="name">std</span><span class="punctuation">;</span>
+<span class="keyword type">void</span> <span class="name function">think</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span><span class="name">cout</span> <span class="operator">&lt;&lt;</span><span class="literal string">&quot;Eating&quot;</span><span class="operator">&lt;&lt;</span><span class="name">endl</span><span class="punctuation">;}</span>
+<span class="keyword type">void</span> <span class="name function">eat</span><span class="punctuation">(</span><span class="keyword type">void</span><span class="punctuation">){</span><span class="name">cout</span><span class="operator">&lt;&lt;</span><span class="literal string">&quot;thinking&quot;</span><span class="operator">&lt;&lt;</span><span class="name">endl</span><span class="punctuation">;}</span>
+<span class="name">semaphore</span> <span class="name">forks</span><span class="punctuation">[</span><span class="literal number integer">5</span><span class="punctuation">]</span><span class="operator">=</span><span class="punctuation">{</span><span class="literal number integer">1</span><span class="punctuation">,</span><span class="literal number integer">1</span><span class="punctuation">,</span><span class="literal number integer">1</span><span class="punctuation">,</span><span class="literal number integer">1</span><span class="punctuation">,</span><span class="literal number integer">1</span><span class="punctuation">};</span>
+<span class="comment single">//----------------------------
+</span><span class="keyword type">void</span> <span class="name function">philosopher</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+  <span class="keyword">while</span> <span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">){</span>
+    <span class="name">think</span><span class="punctuation">();</span>
+    <span class="name">forks</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">].</span><span class="name">P</span><span class="punctuation">();</span>
+    <span class="name">forks</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">P</span><span class="punctuation">();</span>
+    <span class="name">eat</span><span class="punctuation">();</span>
+    <span class="name">forks</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">V</span><span class="punctuation">();</span>
+    <span class="name">forks</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">].</span><span class="name">V</span><span class="punctuation">();</span>
+  <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+<span class="keyword type">int</span> <span class="name function">main</span><span class="punctuation">(){</span>
+  <span class="name">cobegin</span><span class="punctuation">{</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+    <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">3</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">);</span>
+  <span class="punctuation">}</span>
+  <span class="keyword">return</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="pickup-two-forks-at-the-same-time-semaphore">
+<h2>7.2&nbsp;&nbsp;&nbsp;Pickup two forks at the same time (semaphore)</h2>
+<pre class="code cpp literal-block">
+<span class="keyword">enum</span> <span class="punctuation">{</span><span class="name">thinking</span> <span class="punctuation">,</span> <span class="name">hungry</span> <span class="punctuation">,</span> <span class="name">eating</span> <span class="punctuation">}</span> <span class="name">state</span><span class="punctuation">[</span><span class="literal number integer">5</span><span class="punctuation">];</span>
+<span class="name">semaphore</span> <span class="name">self</span><span class="punctuation">[</span><span class="literal number integer">5</span><span class="punctuation">]{</span><span class="literal number integer">0</span><span class="punctuation">,</span><span class="literal number integer">0</span><span class="punctuation">,</span><span class="literal number integer">0</span><span class="punctuation">,</span><span class="literal number integer">0</span><span class="punctuation">,</span><span class="literal number integer">0</span><span class="punctuation">};</span>
+<span class="keyword type">void</span> <span class="name function">pickup</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+  <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">hungry</span><span class="punctuation">;</span>
+  <span class="keyword">if</span><span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="name">eating</span> <span class="operator">||</span> <span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span> <span class="operator">==</span> <span class="name">eating</span><span class="punctuation">)</span>
+    <span class="name">self</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">].</span><span class="name">P</span><span class="punctuation">()</span>
+  <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">eating</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+<span class="keyword type">void</span> <span class="name function">putdown</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+  <span class="keyword">if</span><span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="name">hungry</span> <span class="operator">&amp;&amp;</span> <span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">-</span><span class="literal number integer">2</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span> <span class="operator">!=</span> <span class="name">eating</span> <span class="punctuation">)</span>
+    <span class="name">self</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">V</span><span class="punctuation">();</span>
+  <span class="keyword">if</span><span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="name">hungry</span> <span class="operator">&amp;&amp;</span> <span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">2</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span> <span class="operator">!=</span> <span class="name">eating</span> <span class="punctuation">)</span>
+    <span class="name">self</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">V</span><span class="punctuation">();</span>
+  <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">thinking</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+<span class="keyword type">void</span> <span class="name function">philosopher</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+   <span class="keyword">do</span><span class="punctuation">{</span>   <span class="comment single">//thinking
+</span>         <span class="name">pickup</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+         <span class="comment single">// eating
+</span>         <span class="name">putdown</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+   <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">int</span> <span class="name function">main</span><span class="punctuation">(){</span>
+  <span class="keyword">for</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span> <span class="name">i</span><span class="operator">&lt;</span><span class="literal number integer">5</span><span class="punctuation">;</span> <span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span> <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span> <span class="name">thinking</span><span class="punctuation">;</span>
+ <span class="name">cobegin</span><span class="punctuation">{</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">3</span><span class="punctuation">);</span> <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">);}</span>
+  <span class="keyword">return</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+</pre>
+</div>
+<div class="section" id="pickup-two-forks-at-the-same-time">
+<h2>7.3&nbsp;&nbsp;&nbsp;Pickup two forks at the same time</h2>
+<pre class="code cpp literal-block">
+<span class="name">monitor</span> <span class="name">diningPhilosopher</span><span class="punctuation">{</span>
+  <span class="name">condition</span> <span class="name">self</span><span class="punctuation">[</span><span class="literal number integer">5</span><span class="punctuation">];</span>
+  <span class="keyword">enum</span> <span class="punctuation">{</span><span class="name">thinking</span><span class="punctuation">,</span><span class="name">hungry</span><span class="punctuation">,</span><span class="name">eating</span> <span class="punctuation">}</span> <span class="name">state</span><span class="punctuation">[</span><span class="literal number integer">5</span><span class="punctuation">];</span>
+  <span class="keyword type">void</span> <span class="name function">pickup</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+    <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">hungry</span><span class="punctuation">;</span>
+    <span class="keyword">if</span><span class="punctuation">((</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">4</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span> <span class="punctuation">]</span><span class="operator">==</span> <span class="name">eating</span><span class="punctuation">)</span><span class="operator">||</span>  <span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span><span class="operator">==</span><span class="name">eating</span><span class="punctuation">))</span>
+      <span class="name">self</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">].</span><span class="name">wait</span><span class="punctuation">();</span>
+    <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">eating</span><span class="punctuation">;</span>
+  <span class="punctuation">}</span>
+  <span class="keyword type">void</span> <span class="name function">putdown</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">){</span>
+    <span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">thinking</span><span class="punctuation">;</span>
+    <span class="keyword">if</span><span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">2</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span><span class="operator">!=</span><span class="name">eating</span><span class="punctuation">)</span> <span class="name">self</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">1</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">signal</span><span class="punctuation">();</span>
+    <span class="keyword">if</span><span class="punctuation">(</span><span class="name">state</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">3</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">]</span><span class="operator">!=</span><span class="name">eating</span><span class="punctuation">)</span> <span class="name">self</span><span class="punctuation">[(</span><span class="name">i</span><span class="operator">+</span><span class="literal number integer">4</span><span class="punctuation">)</span><span class="operator">%</span><span class="literal number integer">5</span><span class="punctuation">].</span><span class="name">signal</span><span class="punctuation">();</span>
+  <span class="punctuation">}</span>
+  <span class="name">diningPhilosopher</span><span class="punctuation">()</span>
+  <span class="punctuation">{</span><span class="keyword">for</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="operator">=</span><span class="literal number integer">0</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">&lt;</span><span class="literal number integer">5</span><span class="punctuation">;</span><span class="name">i</span><span class="operator">++</span><span class="punctuation">)</span><span class="name">state</span><span class="punctuation">[</span><span class="name">i</span><span class="punctuation">]</span><span class="operator">=</span><span class="name">thinking</span><span class="punctuation">;}</span>
+<span class="punctuation">};</span><span class="name">diningPhilosopher</span> <span class="name">dp</span><span class="punctuation">;</span>
+<span class="keyword type">void</span> <span class="name function">philosopher</span><span class="punctuation">(</span><span class="keyword type">int</span> <span class="name">i</span><span class="punctuation">)</span>
+<span class="punctuation">{</span><span class="keyword">do</span><span class="punctuation">{</span>
+  <span class="comment multiline">/*thinking*/</span> <span class="name">dp</span><span class="punctuation">.</span><span class="name">pickup</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span><span class="comment multiline">/* eating */</span> <span class="name">dp</span><span class="punctuation">.</span><span class="name">putdown</span><span class="punctuation">(</span><span class="name">i</span><span class="punctuation">);</span>
+ <span class="punctuation">}</span><span class="keyword">while</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span>
+<span class="punctuation">}</span>
+<span class="keyword type">int</span> <span class="name function">main</span><span class="punctuation">(){</span><span class="name">cobegin</span><span class="punctuation">{</span>
+              <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">0</span><span class="punctuation">);</span><span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">1</span><span class="punctuation">);</span><span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">2</span><span class="punctuation">);</span>
+              <span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">3</span><span class="punctuation">);</span><span class="name">philosopher</span><span class="punctuation">(</span><span class="literal number integer">4</span><span class="punctuation">);</span>
+   <span class="punctuation">}</span> <span class="keyword">return</span> <span class="literal number integer">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+</pre>
+<!-- comments:
+
+rst2html.py process_synchronization.rst process_synchronization.html -->
+</div>
+</div>
+</div>
+</body>
+</html>
