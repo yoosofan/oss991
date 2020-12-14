@@ -10,12 +10,8 @@
 
 :slide-numbers: true
 
-
-
 .. role:: ltr
     :class: ltr
-
-
 
 Operating Systems 
 ==============================
@@ -843,7 +839,7 @@ Belady’s anomaly
 
 ----
 
-الگوریتم جایگزینی LRU
+الگوریتم جایگزینی NRU
 ===================================================
 .. image:: img/memory/memory_virtual_page_replacement_LRU.png
    :align: center
