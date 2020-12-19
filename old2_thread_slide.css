@@ -1,0 +1,14 @@
+div,yoosofan-thread-Thread-in-Python-II-grid {
+  display: grid;
+  grid-template-areas:  "yoo-g2220"
+                        "python-II-code"
+                        "python-II-code"
+  gap: 1px;
+}
+div.yoosofan-thread-thread-in-python-II-grid-code {
+  grid-area: python-II-code;
+}
+
+yoosofan-thread-Thread-in-Python-II-grid-output20 {
+  grid-area: python-II-output20
+}

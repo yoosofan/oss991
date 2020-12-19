@@ -74,3 +74,7 @@ li {
     font-size: 90%;
 
 }
+.rtl {direction: rtl; text-align: right;}
+
+#imporatnce-of-track-or-cylinder-id > ol {direction: rtl; text-align: right;}
+

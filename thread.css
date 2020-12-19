@@ -1,0 +1,267 @@
+/* @import url(http://fonts.googleapis.com/css?family=Libre+Baskerville|Racing+Sans+One|Satisfy);*/
+
+@media screen and (min-width:1200px) {
+  #impress {
+    transform: scale(1.5) !important;
+  }
+}
+@media screen and (min-width:800px) and (max-width:1199px) {
+  #impress {
+    transform: scale(1) !important;
+  }
+}
+@media screen and (min-width:640px) and (max-width:799px) {
+  #impress {
+    transform: scale(0.9) !important;
+  }
+}
+
+@media screen and (min-width:500px) and (max-width:639px) {
+  #impress {
+    transform: scale(0.8) !important;
+  }
+}
+
+body {
+  text-align: center;
+  font-family: Nazli, Libre Baskerville;
+  background-color: #D1D8E4; /*#728ec2;*/
+}
+p {
+    font-weight: normal;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+em {
+    font-family: Satisfy;
+}
+strong {
+    font-family: Racing Sans One;
+    letter-spacing: -2px;
+}
+h1, h2, h3, h4 {
+    font-weight: normal;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+ul, ol, pre.code{
+    text-align: left;
+}
+pre.code {
+  padding-top: 0.1em;    
+  padding-bottom: 0.1em;    
+  padding-left: 0.2em;    
+  padding-right: 0.2em;    
+  border-style: solid;    
+  border-left-width: 0.5em;    
+  border-top-width: thin;    
+  border-right-width: thin;    
+  border-bottom-width: thin;    
+  border-color: #95ABD0;
+}
+pre.code > .ln {
+  /*background-color: #E4E5E7;*/
+  background-color: #DFE5F1;
+}
+
+#ThreeD H1 {
+    font-family: Racing Sans One;
+    /*font-size: 300%;*/
+}
+#thequestion p {
+    font-family: Racing Sans One;
+}
+.footer {
+    position: absolute;
+    top: 95%;
+    /*font-size: 50%;*/
+}
+.smallerelementwithfullborder table, .smallerelementwithfullborder tr, .smallerelementwithfullborder td, .smallerelementwithfullborder th {
+    border: 1px solid black;
+    /*font-size: 90%;*/
+
+}
+.rtl { direction: rtl; text-align: justify; }
+.ltr { direction: ltr;  text-align: justify;}
+
+pre.code {
+  background-color:#f0f0f0;
+}
+pre.console{
+  background-color: #F9E0E0;
+}
+div#thread-in-python-i-id{
+  display: grid;
+  grid-template-areas:  "h1 h1 h1 h1"
+                        "code1 code1 code2 code2"
+                        "output0 output1 output2 output3";  
+  gap: 1px;
+}
+div#thread-in-python-i-id > h1:nth-of-type(1) {
+  grid-area: h1;
+  /*align-self:center;   justify-self: center;  */
+}
+/* https://css-tricks.com/the-difference-between-nth-child-and-nth-of-type/ */
+div#thread-in-python-i-id > pre:nth-of-type(1) {
+  grid-area: code1;
+}
+div#thread-in-python-i-id > pre:nth-of-type(2) {
+  grid-area: code2;
+}
+div#thread-in-python-i-id > pre:nth-of-type(3) {
+  grid-area: output0;
+}
+div#thread-in-python-i-id > pre:nth-of-type(4) {
+  grid-area: output1;
+}
+div#thread-in-python-i-id > pre:nth-of-type(5) {
+  grid-area: output2;
+}
+
+div#thread-in-python-i-id > pre:nth-of-type(6) {
+  grid-area: output3;
+}
+
+/* slide */
+div#thread-in-python-ii-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1 h1'
+        'code22 output25 output35'
+        'code22 output45 output55 '
+        '. output65 .';
+      gap: 1px;
+}
+div#thread-in-python-ii-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(2) {
+  grid-area: output25;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(3) {
+  grid-area: output35;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(4) {
+grid-area: output45;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(5) {
+  grid-area: output55;
+}
+div#thread-in-python-ii-id > pre:nth-of-type(6) {
+  grid-area: output65;
+}
+
+/* slide */
+div#thread-in-python-iii-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1 h1'
+        'code22 code22 output25'
+        'code22 code22 output35'
+        'output45 output55 output65';
+      gap: 1px;
+}
+div#thread-in-python-iii-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(2) {
+  grid-area: output25;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(3) {
+  grid-area: output35;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(4) {
+grid-area: output45;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(5) {
+  grid-area: output55;
+}
+div#thread-in-python-iii-id > pre:nth-of-type(6) {
+  grid-area: output65;
+}
+
+/* slide */
+div#thread-in-python-join-i-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1'
+        'code22 code32';
+      gap: 1px;
+}
+div#thread-in-python-join-i-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-join-i-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-join-i-id > pre:nth-of-type(2) {
+  grid-area: code32;
+}
+
+/* slide */
+div#thread-in-python-join-ii-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1'
+        'code22 code32';
+      gap: 1px;
+}
+div#thread-in-python-join-ii-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-join-ii-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-join-ii-id > pre:nth-of-type(2) {
+  grid-area: code32;
+}
+
+/*
+div.yoosofan-grid-area-element-align-center{
+  align-self:center; 
+  justify-self: stretch
+  background-color:#f0f0f0;
+}
+*/
+
+/* slide */
+div#thread-in-python-parameter-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1'
+        'code22 code32';
+      gap: 1px;
+}
+div#thread-in-python-parameter-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-parameter-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-parameter-id > pre:nth-of-type(2) {
+  grid-area: code32;
+}
+
+/* slide */
+div#thread-in-python-sharing-id {
+      display: grid;
+      grid-template-areas:
+        'h1 h1'
+        'code22 code32';
+      gap: 1px;
+}
+div#thread-in-python-sharing-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#thread-in-python-sharing-id > pre:nth-of-type(1) {
+  grid-area: code22;
+}
+div#thread-in-python-sharing-id > pre:nth-of-type(2) {
+  grid-area: code32;
+}

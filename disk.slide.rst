@@ -218,18 +218,22 @@ List Based
 
 Bit Vector
 ===============
-* Each block is represented by a bit in a table. Thus, if there are **n** disk blocks, the table has **n** bits.
+* Each block is represented by a bit in a table. Thus, if there are " n " disk blocks, the table has " n " bits.
 * If a block is free, its corresponding bit is 1.
-* When a block is needed, the table is searched.  If a 1 bit is found in position **k**, block **k** is free.
+* When a block is needed, the table is searched.  If a 1 bit is found in position " k ", block " k " is free.
 * If the disk capacity is small, the whole bit vector can be stored in memory. For a large disk, this bit vector will consume too much memory.
-* We could group a few blocks into a clusterand allocate **clusters**. This saves space and may cause internal fragmentation.
-* Another possibility is the use of a **summary table**.
+* We could group a few blocks into a clusterand allocate " clusters ". This saves space and may cause internal fragmentation.
+* Another possibility is the use of a " summary table ".
 
 ----
 
 Input Output Structure
 ========================
 .
+.. :
+
+  https://en.wikipedia.org/wiki/I/O_scheduling
+  https://computationstructures.org/lectures/interrupts/interrupts.html
 
 ----
 
@@ -251,9 +255,80 @@ Status of Disk Requests
 
 ----
 
-Disk Scheduling
-=================
-.
+Linux Block I/O Stack
+===========================
+.. image:: img/disk/Linux_block_IO_stack.jpg
+   :width: 900px
+   :height: 600px
+
+`informit <https://www.informit.com/articles/article.aspx?p=2995360>`_
+
+----
+
+Disk I/O OS Terminology
+===========================
+.. image:: img/disk/disk_io_operating_system_terminology.jpg
+   :width: 900px
+   :height: 600px
+
+`informit <https://www.informit.com/articles/article.aspx?p=2995360>`_
+
+----
+
+Disk Arm Scheduling Algorithms
+====================================
+.. image:: img/disk/hdd_platter.svg
+   :width: 900px
+   :height: 600px
+
+http://gudok.xyz/sspar/
+
+----
+
+Operations performed during random access
+=================================================
+.. image:: img/disk/hdd_random_operations.svg
+   :width: 550px
+   :height: 550px
+
+http://gudok.xyz/sspar/
+
+.. : related websites
+
+  https://www.geeksforgeeks.org/difference-between-seek-time-and-rotational-latency-in-disk-scheduling/
+  https://www.geeksforgeeks.org/hard-disk-drive-hdd-secondary-memory/
+  https://www.programmersought.com/article/73491676920/
+
+----
+
+Important Disk Parameters
+===========================
+.. image:: img/disk/disk_important_parameters.png
+
+* Seek Time
+* Rotational Latency
+* Transfer Time
+* Disk Access Time
+* Disk Response Time
+
+
+----
+
+:id: imporatnce-of-track-or-cylinder-id
+
+Imporatnce of Track or Cylinder
+=====================================
+زمان پیگیرد یا زمان جستجو
+
+Seek time
+
+.. class:: rtl
+
+  * درخواست‌های فرآیندها به بخش‌های مختلف دیسک اشاره می‌کند که مهم‌ترین پارامتر رفتن به سیلندز مورد نظر است.
+
+  * پس سیستم عامل در پایین‌ترین سطح کار خود با دیسک  دنباله‌ای از درخواست‌های به سیلندرهای گوناگون را  زمان‌بندی می‌کند.
+
+98, 183, 37, 122, 14, 124, 65, 67
 
 ----
 
@@ -284,17 +359,25 @@ C-SCAN
 ========
 .. image:: img/disk/disk_C_SCAN_disk_scheduling.png
 
+.. : Further Reading
+
+  https://arxiv.org/pdf/1403.0334.pdf
+
 ----
 
 LOOK
 =====
-.
+.. image:: img/disk/LOOKllLOOK.png
 
 ----
 
 C-LOOK
 =======
 .. image:: img/disk/c_look.png
+
+.. :
+
+  https://www.gatevidyalay.com/look-algorithm-disk-scheduling-algorithms/
 
 ----
 

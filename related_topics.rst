@@ -10,6 +10,14 @@
 ===================================================
 موضوع‌های مربوط
 ===================================================
+https://www.cs.rutgers.edu/~pxk/416/notes/07-scheduling.html
+
+Process Scheduling
+Who gets to run next?
+Paul Krzyzanowski
+February 18, 2015
+
+--------
 
 operating system memory management base register
 

@@ -1135,6 +1135,7 @@ Sharing segments
    :align: center
    :scale: 70%
 
+ 
 ----
 
 References:
@@ -1154,6 +1155,10 @@ References:
     * https://www.cse.iitb.ac.in/~mythili/teaching/cs347_autumn2016/notes/07-memory.pdf
     * https://www.kernel.org/doc/html/latest/admin-guide/mm/index.html
     * operating systems paging kernel
+
+    Physical and Virtual Memory in Windows 10 
+    ===============================================
+    https://answers.microsoft.com/en-us/windows/forum/windows_10-performance/physical-and-virtual-memory-in-windows-10/e36fb5bc-9ac8-49af-951c-e7d39b979938
 
 .. comments:
 
