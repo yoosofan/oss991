@@ -1,7 +1,7 @@
 #include<iostream>
 #include<thread>
 using namespace std;
-void f(void){//std::this_thread::sleep_for(std::chrono::seconds(1));
+void f(void){
   cout << "In thread " << endl;
   cout << "the next output" << endl;
 }
