@@ -331,7 +331,7 @@ C++ Thread join
 
 :id: cpp-thread-func-array-id
 
-Array of C++ Thread
+Array of Thread
 ====================
 .. include:: src/thread/640.cpp
   :number-lines:
@@ -339,6 +339,77 @@ Array of C++ Thread
   :class: substep
 
 .. include:: src/thread/640_out10.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-out-id
+
+Array of Thread output
+==========================
+.. include:: src/thread/640_out20.txt
+  :code: console
+  :class: substep
+
+.. include:: src/thread/640_out30.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-out2-id
+
+Array of Thread output(II)
+==========================
+.. include:: src/thread/640_out40.txt
+  :code: console
+  :class: substep
+
+.. include:: src/thread/640_out50.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-out4-id
+
+Array of Thread(III)
+======================
+.. include:: src/thread/650.cpp
+  :number-lines:
+  :code: cpp
+  :class: substep
+
+.. include:: src/thread/650_out10.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-out4-id
+
+Array of Thread(III)
+======================
+.. include:: src/thread/650_out12.txt
+  :code: console
+  :class: substep
+
+.. include:: src/thread/650_out14.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-out6-id
+
+Array of Thread(III)
+======================
+.. include:: src/thread/650_out16.txt
+  :code: console
+  :class: substep
+
+.. include:: src/thread/650_out18.txt
   :code: console
   :class: substep
 

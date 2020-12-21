@@ -329,3 +329,39 @@ div#cpp-thread-func-array-id {
 div#cpp-thread-func-array-id  > h1:nth-of-type(1)  { grid-area: h1;}
 div#cpp-thread-func-array-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
 div#cpp-thread-func-array-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
+
+div#cpp-thread-func-array-out-id {
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-func-array-out-id  > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-func-array-out-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-func-array-out-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
+
+div#cpp-thread-func-array-out2-id{
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-func-array-out2-id  > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-func-array-out2-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-func-array-out2-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
+
+div#cpp-thread-func-array-out4-id{
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-func-array-out4-id  > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-func-array-out4-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-func-array-out4-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
