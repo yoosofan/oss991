@@ -279,6 +279,26 @@ Create Parallel Code
 .. code:: cpp
   :class: substep
 
+  f2(x)
+  
+.. code:: cpp
+  :class: substep
+
+  f3(x)
+
+.. code:: cpp
+  :class: substep
+
+  f4(x, y)
+
+.. code:: cpp
+  :class: substep
+
+  f5(x, y)
+
+.. code:: cpp
+  :class: substep
+
   f2(x) *  f3(x)
 
 .. code:: cpp
@@ -352,7 +372,7 @@ Array of Thread output
   :code: console
   :class: substep
 
-.. include:: src/thread/640_out30.txt
+.. include:: src/thread/640_out40.txt
   :code: console
   :class: substep
 
@@ -362,7 +382,7 @@ Array of Thread output
 
 Array of Thread output(II)
 ==========================
-.. include:: src/thread/640_out40.txt
+.. include:: src/thread/640_out560.txt
   :code: console
   :class: substep
 
