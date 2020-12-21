@@ -1,6 +1,6 @@
 :data-transition-duration: 1000
 :skip-help: true
-:css: style2.css
+:css: style2.css process_synchronization.css
 :substep: true
 :slide-numbers: true
 :skip-help: true
@@ -21,62 +21,6 @@ University of Kashan
 
 ----
 
-.. raw:: html
-
-  <div class="yoosofan-grid4code2column-with-header">
-  <div class="yoosofan-grid4code2column-share-header-comment-row-1">
-  code
-  </div>
-  <div class="yoosofan-grid4code2column-share-code-row-2 yoosofan-grid4code-border ">
-
-.. code:: cpp
-
-  f2(x) * f3(x) + f4(x, y) / f5(x, y)
-
-.. raw:: html
-
-  </div><div class="yoosofan-grid4code2column-col-1-header-comment-row-3">
-  P<sub>0</sub>
-  </div><div class="yoosofan-grid4code2column-col-1-code-row-4 yoosofan-grid4code-border ">
-
-.. code:: cpp
-  :class: substep
-
-  f2(x) *  f3(x)
-
-.. raw:: html
-
-  </div><div class="yoosofan-grid4code2column-col-2-header-comment-row-3">
-  P<sub>0</sub>
-  </div><div class="yoosofan-grid4code2column-col-2-code-row-4 yoosofan-grid4code-border ">
-
-.. code:: cpp
-  :class: substep
-
-  f4(x, y) / f5(x, y)
-
-.. raw:: html
-
-  </div></div>
-
-.. raw:: html
-
-  <div class="yoosofan-grid4code2column-with-header">
-  <div class="yoosofan-grid4code2column-share-header-comment-row-1">
-  Share code
-  </div>
-  <div class="yoosofan-grid4code2column-share-code-row-2 yoosofan-grid4code-border ">
-
-.. code:: cpp
-  :class: substep
-
-  +
-
-.. raw:: html
-
-  </div></div>
-
-----
 
 .. raw:: html
 

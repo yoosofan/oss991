@@ -48,15 +48,15 @@ ul, ol, pre.code{
     text-align: left;
 }
 pre.code {
-  padding-top: 0.1em;    
-  padding-bottom: 0.1em;    
-  padding-left: 0.2em;    
-  padding-right: 0.2em;    
-  border-style: solid;    
-  border-left-width: 0.5em;    
-  border-top-width: thin;    
-  border-right-width: thin;    
-  border-bottom-width: thin;    
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  border-style: solid;
+  border-left-width: 0.5em;
+  border-top-width: thin;
+  border-right-width: thin;
+  border-bottom-width: thin;
   border-color: #95ABD0;
 }
 pre.code > .ln {
@@ -94,7 +94,7 @@ div#thread-in-python-i-id{
   display: grid;
   grid-template-areas:  "h1 h1 h1 h1"
                         "code1 code1 code2 code2"
-                        "output0 output1 output2 output3";  
+                        "output0 output1 output2 output3";
   gap: 1px;
 }
 div#thread-in-python-i-id > h1:nth-of-type(1) {
@@ -224,7 +224,7 @@ div#thread-in-python-join-ii-id > pre:nth-of-type(2) {
 
 /*
 div.yoosofan-grid-area-element-align-center{
-  align-self:center; 
+  align-self:center;
   justify-self: stretch
   background-color:#f0f0f0;
 }
@@ -265,3 +265,67 @@ div#thread-in-python-sharing-id > pre:nth-of-type(1) {
 div#thread-in-python-sharing-id > pre:nth-of-type(2) {
   grid-area: code32;
 }
+div#paralell-func-id{
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code22'
+    'code32 code42'
+    'code52 code52'
+  ;
+  gap: 1px;
+}
+div#paralell-func-id > h1:nth-of-type(1) {
+  grid-area: h1;
+}
+div#paralell-func-id > pre:nth-of-type(1) {
+  grid-area: code22;
+  justify-self: center;
+}
+div#paralell-func-id > pre:nth-of-type(2) {
+  grid-area: code32;
+  justify-self: center;
+}
+div#paralell-func-id > pre:nth-of-type(3) {
+  grid-area: code42;
+  justify-self: center;
+}
+div#paralell-func-id > pre:nth-of-type(4) {
+  grid-area: code52;
+  justify-self: center;
+}
+div#cpp-thread-id {
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-id > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-id > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-id > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
+
+div#cpp-thread-join-id {
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-join-id  > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-join-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-join-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}
+
+div#cpp-thread-func-array-id {
+  display: grid;
+  grid-template-areas:
+    'h1 h1'
+    'code22 code32'
+  ;
+  gap: 1px;
+}
+div#cpp-thread-func-array-id  > h1:nth-of-type(1)  { grid-area: h1;}
+div#cpp-thread-func-array-id  > pre:nth-of-type(1) { grid-area: code22; justify-self: center;}
+div#cpp-thread-func-array-id  > pre:nth-of-type(2) { grid-area: code32; justify-self: center;}

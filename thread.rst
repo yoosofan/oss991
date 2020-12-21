@@ -1,6 +1,6 @@
 :data-transition-duration: 1000
 :skip-help: true
-:css: test_thread_style.css
+:css: thread.css
 :substep: true
 :slide-numbers: true
 :skip-help: true
@@ -263,6 +263,83 @@ Thread Python Sharing
 .. include:: src/thread/360.py
   :number-lines:
   :code: python
+  :class: substep
+
+----
+
+:id: paralell-func-id
+
+Create Parallel Code
+============================
+
+.. code:: cpp
+
+  f2(x) * f3(x) + f4(x, y) / f5(x, y)
+
+.. code:: cpp
+  :class: substep
+
+  f2(x) *  f3(x)
+
+.. code:: cpp
+  :class: substep
+
+  f4(x, y) / f5(x, y)
+
+.. code:: cpp
+  :class: substep
+
+  +
+
+----
+
+:id: cpp-thread-id
+
+C++ Thread
+===============
+.. include:: src/thread/620.cpp
+  :number-lines:
+  :code: cpp
+  :class: substep
+
+.. code:: console
+  :class: substep
+  
+  thread$ ./a.out
+  In main
+  second in main
+  In thread 
+  the next output in thread
+  thread$ ./a.out
+
+----
+
+:id: cpp-thread-join-id
+
+C++ Thread join
+=================
+.. include:: src/thread/630.cpp
+  :number-lines:
+  :code: cpp
+  :class: substep
+
+.. include:: src/thread/630_out.txt
+  :code: console
+  :class: substep
+
+----
+
+:id: cpp-thread-func-array-id
+
+Array of C++ Thread
+====================
+.. include:: src/thread/640.cpp
+  :number-lines:
+  :code: cpp
+  :class: substep
+
+.. include:: src/thread/640_out10.txt
+  :code: console
   :class: substep
 
 ----

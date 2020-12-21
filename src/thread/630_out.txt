@@ -1,0 +1,6 @@
+In thread 
+the next output in thread
+In main
+second in main
+terminate called without an active exception
+Aborted (core dumped)
